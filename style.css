@@ -5,24 +5,35 @@
     padding: 0;
 }
 
-/* 🌌 은은한 빛 번짐(Glow)과 규칙적인 도트 패턴 배경 */
+/* 🌌 연한 격자(Grid) 패턴 배경 설정 */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #0f0f0f;
+    background-color: #0a0a0a;
     background-image: 
-        radial-gradient(circle at 50% 15%, rgba(255, 255, 255, 0.05) 0%, transparent 60%),
-        radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
-    background-size: 100% 100%, 28px 28px;
+        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px; /* 격자 간격 */
     color: #f1f1f1;
     line-height: 1.6;
     overflow-x: hidden;
 }
 
+/* 🌟 배경 파티클 캔버스 레이어 설정 */
+#bg-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* 마우스 클릭을 방해하지 않음 */
+    z-index: -1; /* 콘텐츠 뒤에 위치 */
+}
+
 /* 🖤 상단 네비게이션바 (미니멀 스타일) */
 header {
-    background-color: rgba(15, 15, 15, 0.85);
+    background-color: rgba(10, 10, 10, 0.85);
     backdrop-filter: blur(10px);
-    border-bottom: 1px solid #262626;
+    border-bottom: 1px solid #222222;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -75,7 +86,7 @@ nav a:hover, nav a.active {
     margin-bottom: 2.5rem;
 }
 
-/* 심플 버튼 스타일 (흑백 반전 효과) */
+/* 심플 버튼 스타일 */
 .btn {
     display: inline-block;
     background-color: #ffffff;
@@ -117,30 +128,29 @@ nav a:hover, nav a.active {
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 20px;
     margin-top: 20px;
-    perspective: 1000px; /* 3D 효과를 위한 원근감 설정 */
+    perspective: 1000px;
 }
 
-/* ♟️ 3D 카드 및 빛 반사(Sheen) 효과 디자인 */
+/* ♟️ 3D 카드 및 빛 반사 효과 */
 .project-card, .skill-box, .contact-card {
     position: relative;
-    overflow: hidden; /* 빛 반사가 카드 밖으로 넘치지 않도록 설정 */
-    background-color: #171717;
+    overflow: hidden;
+    background-color: #141414;
     padding: 25px;
     border-radius: 6px;
-    border: 1px solid #262626;
+    border: 1px solid #222222;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
-    transform-style: preserve-3d; /* 내부 요소의 3D 공간 유지 */
+    transform-style: preserve-3d;
     will-change: transform;
 }
 
-/* ✨ 마우스 위치에 따라 따라오는 빛 반사 효과 */
 .project-card::after, .skill-box::after, .contact-card::after {
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
     background: radial-gradient(
         circle 200px at var(--mouse-x, 50%) var(--mouse-y, 50%), 
-        rgba(255, 255, 255, 0.1) 0%, 
+        rgba(255, 255, 255, 0.08) 0%, 
         transparent 80%
     );
     opacity: 0;
@@ -153,8 +163,8 @@ nav a:hover, nav a.active {
 }
 
 .project-card:hover, .skill-box:hover, .contact-card:hover {
-    border-color: #555555;
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6); /* 입체감이 살도록 그림자 깊이감 추가 */
+    border-color: #444444;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.7);
 }
 
 .project-card h3 {
@@ -173,13 +183,13 @@ nav a:hover, nav a.active {
     width: 110px;
     height: 110px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #262626, #0f0f0f);
+    background: linear-gradient(135deg, #222, #0a0a0a);
     display: flex;
     align-items: center;
     justify-content: center;
     border: 2px solid #333;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
-    overflow: hidden; /* 이미지가 원 밖으로 튀어나가지 않도록 설정 */
+    overflow: hidden;
 }
 
 .avatar-placeholder {
@@ -192,7 +202,7 @@ nav a:hover, nav a.active {
 .avatar-img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* 이미지가 찌그러지지 않고 영역에 맞게 채워지도록 설정 */
+    object-fit: cover;
     border-radius: 50%;
 }
 
