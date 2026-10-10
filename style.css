@@ -269,3 +269,100 @@ nav a:hover, nav a.active {
     width: auto;
     object-fit: contain;
 }
+
+/* --- About & Contact 커스텀 레이아웃 스타일 --- */
+
+.about-details {
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+    margin-top: 30px;
+}
+
+.about-block h3 {
+    font-size: 1.2rem;
+    color: #ffffff;
+    margin-bottom: 12px;
+    font-weight: 600;
+    border-left: 2px solid #ffffff;
+    padding-left: 10px;
+}
+
+.about-block p {
+    color: #a1a1a1;
+    font-size: 1.05rem;
+    line-height: 1.7;
+}
+
+/* 기술 스택 태그 클라우드 */
+.tag-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.tag-cloud span {
+    background-color: #161616;
+    border: 1px solid #282828;
+    color: #d1d1d1;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    font-family: monospace;
+    transition: all 0.2s ease;
+}
+
+.tag-cloud span:hover {
+    border-color: #666;
+    background-color: #202020;
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+/* Contact 리스트 행 스타일 */
+.contact-links-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.contact-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #141414;
+    border: 1px solid #222222;
+    padding: 20px 25px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: all 0.25s ease;
+}
+
+.contact-row .platform {
+    font-weight: 600;
+    color: #ffffff;
+    font-size: 1.05rem;
+}
+
+.contact-row .url {
+    color: #888888;
+    font-size: 0.95rem;
+    font-family: monospace;
+}
+
+.contact-row .arrow {
+    color: #666666;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.contact-row:hover {
+    border-color: #555555;
+    background-color: #1a1a1a;
+    transform: translateY(-2px);
+}
+
+.contact-row:hover .arrow {
+    color: #ffffff;
+    transform: translate(3px, -3px);
+}
