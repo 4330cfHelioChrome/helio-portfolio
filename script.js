@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-    // 1. 기존 타이핑 효과 (유지)
+    // 1. 타이핑 효과
     const heroTitle = document.querySelector(".hero h1");
     if (heroTitle) {
         const text = heroTitle.textContent;
@@ -56,34 +56,34 @@ document.addEventListener("DOMContentLoaded", () => {
         setTimeout(typeWriter, 300);
     }
 
-    // 2. 🌟 카드 3D 틸트(Hover Tilt) 효과
+    // 2. 🌟 3D 틸트 및 빛 반사 인터랙션
     const cards = document.querySelectorAll(".project-card, .skill-box, .contact-card");
 
     cards.forEach(card => {
         card.addEventListener("mousemove", (e) => {
             const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left; // 카드 내부에서의 마우스 X 위치
-            const y = e.clientY - rect.top;  // 카드 내부에서의 마우스 Y 위치
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
             
+            // CSS 변수로 마우스 위치 설정 (빛 반사 효과에 사용)
+            card.style.setProperty('--mouse-x', `${x}px`);
+            card.style.setProperty('--mouse-y', `${y}px`);
+
             const centerX = rect.width / 2;
             const centerY = rect.height / 2;
             
-            // 마우스 위치에 따라 회전 각도 계산 (숫자가 클수록 많이 꺾임)
             const rotateX = -((y - centerY) / centerY) * 12; 
             const rotateY = ((x - centerX) / centerX) * 12;
             
-            // 3D 회전과 살짝 위로 떠오르는 효과 적용
             card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-6px)`;
         });
 
         card.addEventListener("mouseleave", () => {
-            // 마우스가 카드를 벗어나면 부드럽게 제자리로 복귀
             card.style.transition = "transform 0.5s ease, border-color 0.3s ease, box-shadow 0.3s ease";
             card.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)";
         });
 
         card.addEventListener("mouseenter", () => {
-            // 마우스가 올라간 순간에는 부드러운 전환 효과 잠시 제거 (마우스 따라 즉시 반응하도록)
             card.style.transition = "none";
         });
     });
