@@ -123,7 +123,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 4. 🛞 Lenis 관성 부드러운 스크롤 효과
     const lenis = new Lenis({
-        duration: 1.5, // 값이 클수록 더 묵직하고 부드럽게 감속됩니다 (기본값 보통 1.2)
+        duration: 3, // 값이 클수록 더 묵직하고 부드럽게 감속됩니다 (기본값 보통 1.2)
         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // 부드러운 가속/감속 곡선
         smoothWheel: true
     });
