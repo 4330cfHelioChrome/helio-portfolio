@@ -1,2 +1,2 @@
-# HelioChrome-s-Website
+# helio-portfolio
 HelioChrome's Website
