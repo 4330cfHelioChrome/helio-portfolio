@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HelioChrome | Portfolio</title>
-    <!-- 공통 CSS 연결 -->
+    <title>HelioChrome | Profile</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -21,16 +20,28 @@
         </nav>
     </header>
 
-    <!-- 메인 콘텐츠 영역 -->
-    <main>
-        <section class="hero">
-            <h1>Hello fellas, this is HelioChrome!</h1>
-            <p>I'm making a fabulous web.</p>
-            <a href="projects.html" class="btn">Go to Projects</a>
+    <!-- 프로필 메인 섹션 -->
+    <main class="page-container">
+        <section class="profile-hero">
+            <!-- 프로필 아바타 (이미지 또는 이니셜 아이콘) -->
+            <div class="avatar-container">
+                <div class="avatar-placeholder">HC</div>
+                <!-- 실제 이미지를 쓰고 싶다면 위 div 대신 아래 코드를 사용하세요 -->
+                <!-- <img src="프로필사진경로.jpg" alt="HelioChrome Profile" class="avatar-img"> -->
+            </div>
+
+            <h1 class="profile-name">김민성 <span class="username">@HelioChrome</span></h1>
+            <p class="profile-bio">Korean Student & Developer :&gt;</p>
+            <p class="profile-desc">새로운 기술을 탐구하고 감각적인 웹 공간을 만들어가는 개발자입니다.</p>
+
+            <!-- 주요 링크 버튼 영역 -->
+            <div class="profile-actions">
+                <a href="projects.html" class="btn primary">View Projects</a>
+                <a href="https://github.com" target="_blank" class="btn secondary">GitHub Profile</a>
+            </div>
         </section>
     </main>
 
-    <!-- 공통 자바스크립트 연결 -->
     <script src="script.js"></script>
 </body>
 </html>
