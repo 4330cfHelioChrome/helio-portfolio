@@ -1,45 +1,79 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // 1. 메인 타이틀 자동 타이핑 효과
-    const heroTitle = document.querySelector(".hero h1");
-    if (heroTitle) {
-        const text = heroTitle.textContent;
-        heroTitle.textContent = "";
-        let i = 0;
-        
-        function typeWriter() {
-            if (i < text.length) {
-                heroTitle.textContent += text.charAt(i);
-                i++;
-                setTimeout(typeWriter, 80); // 타이핑 속도 조절
-            }
+    // 1. 🌌 배경 파티클 및 은은한 연결선 이펙트 (Canvas)
+    const canvas = document.createElement('canvas');
+    canvas.id = 'bg-canvas';
+    document.body.prepend(canvas);
+    const ctx = canvas.getContext('2d');
+
+    let particlesArray = [];
+    const numberOfParticles = 45; // 파티클 개수
+
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    class Particle {
+        constructor() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.size = Math.random() * 1.2 + 0.4;
+            this.speedX = (Math.random() - 0.5) * 0.4;
+            this.speedY = (Math.random() - 0.5) * 0.4;
         }
-        
-        setTimeout(typeWriter, 300); // 페이지 로드 후 0.3초 뒤 시작
+        update() {
+            this.x += this.speedX;
+            this.y += this.speedY;
+            if (this.x > canvas.width) this.x = 0;
+            if (this.x < 0) this.x = canvas.width;
+            if (this.y > canvas.height) this.y = 0;
+            if (this.y < 0) this.y = canvas.height;
+        }
+        draw() {
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fill();
+        }
     }
 
-    // 2. 스크롤 시 카드가 부드럽게 나타나는 인터랙션 (Observer)
-    const cards = document.querySelectorAll(".project-card, .skill-box, .contact-card");
-    
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = "1";
-                entry.target.style.transform = "translateY(0)";
-                observer.unobserve(entry.target);
+    function initParticles() {
+        particlesArray = [];
+        for (let i = 0; i < numberOfParticles; i++) {
+            particlesArray.push(new Particle());
+        }
+    }
+    initParticles();
+
+    function handleParticles() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        for (let i = 0; i < particlesArray.length; i++) {
+            particlesArray[i].update();
+            particlesArray[i].draw();
+
+            // 파티클 사이 거리가 가까우면 은은한 선으로 연결
+            for (let j = i; j < particlesArray.length; j++) {
+                const dx = particlesArray[i].x - particlesArray[j].x;
+                const dy = particlesArray[i].y - particlesArray[j].y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+
+                if (distance < 130) {
+                    ctx.strokeStyle = `rgba(255, 255, 255, ${0.06 * (1 - distance / 130)})`;
+                    ctx.lineWidth = 0.5;
+                    ctx.beginPath();
+                    ctx.moveTo(particlesArray[i].x, particlesArray[i].y);
+                    ctx.lineTo(particlesArray[j].x, particlesArray[j].y);
+                    ctx.stroke();
+                }
             }
-        });
-    }, { threshold: 0.1 });
+        }
+        requestAnimationFrame(handleParticles);
+    }
+    handleParticles();
 
-    cards.forEach(card => {
-        card.style.opacity = "0";
-        card.style.transform = "translateY(20px)";
-        card.style.transition = "opacity 0.6s ease, transform 0.6s ease, border-color 0.4s ease, box-shadow 0.4s ease";
-        observer.observe(card);
-    });
-});
-
-document.addEventListener("DOMContentLoaded", () => {
-    // 1. 타이핑 효과
+    // 2. 메인 타이틀 자동 타이핑 효과 (홈 화면 전용)
     const heroTitle = document.querySelector(".hero h1");
     if (heroTitle) {
         const text = heroTitle.textContent;
@@ -56,7 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
         setTimeout(typeWriter, 300);
     }
 
-    // 2. 🌟 3D 틸트 및 빛 반사 인터랙션
+    // 3. 🌟 카드 3D 틸트 및 마우스 반사(Sheen) 효과
     const cards = document.querySelectorAll(".project-card, .skill-box, .contact-card");
 
     cards.forEach(card => {
@@ -65,7 +99,6 @@ document.addEventListener("DOMContentLoaded", () => {
             const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
             
-            // CSS 변수로 마우스 위치 설정 (빛 반사 효과에 사용)
             card.style.setProperty('--mouse-x', `${x}px`);
             card.style.setProperty('--mouse-y', `${y}px`);
 
