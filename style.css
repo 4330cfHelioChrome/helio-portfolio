@@ -366,3 +366,82 @@ nav a:hover, nav a.active {
     color: #ffffff;
     transform: translate(3px, -3px);
 }
+
+/* --- Projects 카드 상세 스타일 --- */
+
+.project-img-container {
+    width: 100%;
+    height: 160px;
+    overflow: hidden;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    background-color: #1a1a1a;
+}
+
+.project-thumb {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+/* 카드에 마우스가 올라갈 때 이미지 살짝 확대 */
+.project-card:hover .project-thumb {
+    transform: scale(1.05);
+}
+
+.project-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.project-year {
+    font-size: 0.85rem;
+    color: #777777;
+    font-family: monospace;
+}
+
+.project-external-link {
+    color: #888888;
+    font-size: 1.1rem;
+    text-decoration: none;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.project-external-link:hover {
+    color: #ffffff;
+    transform: translate(2px, -2px);
+}
+
+.project-content h3 {
+    font-size: 1.25rem;
+    color: #ffffff;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.project-content p {
+    font-size: 0.95rem;
+    color: #a1a1a1;
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+/* 사용 기술 태그 스타일 */
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.project-tags span {
+    background-color: #1a1a1a;
+    border: 1px solid #2a2a2a;
+    color: #cccccc;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-family: monospace;
+}
