@@ -249,3 +249,15 @@ nav a:hover, nav a.active {
     width: auto;  /* 가로세로 비율 유지 */
     object-fit: contain;
 }
+
+/* 프로필 아바타 이미지 스타일 */
+.avatar-container {
+    overflow: hidden; /* 이미지가 원 밖으로 튀어나가지 않도록 설정 */
+}
+
+.avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 이미지가 찌그러지지 않고 영역에 맞게 채워지도록 설정 */
+    border-radius: 50%;
+}
