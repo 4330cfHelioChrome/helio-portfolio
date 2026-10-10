@@ -236,3 +236,16 @@ nav a:hover, nav a.active {
     border-color: #555;
     transform: translateY(-2px);
 }
+
+/* 로고 이미지 스타일 */
+.logo a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.logo-img {
+    height: 30px; /* 로고의 높이를 원하는 크기로 조절하세요 (예: 28px~35px) */
+    width: auto;  /* 가로세로 비율 유지 */
+    object-fit: contain;
+}
