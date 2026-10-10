@@ -46,36 +46,40 @@
                 </div>
             </div>
 
-            <!-- 👥 팀 멤버 섹션 -->
+            <!-- 👥 팀 멤버 섹션 (가로형 리스트 레이아웃으로 변경) -->
             <div style="margin-top: 50px;">
                 <h3 style="font-size: 1.5rem; color: #ffffff; margin-bottom: 20px; border-left: 2px solid #ffffff; padding-left: 10px;">Team Members</h3>
                 
-                <div class="project-grid">
-                    <!-- 멤버 1 (본인 예시) -->
-                    <div class="project-card team-card">
-                        <div class="team-avatar-box">
-                            <img src="./images/logo.png" alt="HelioChrome" class="team-avatar-img">
-                        </div>
-                        <div class="project-content" style="text-align: center;">
-                            <h4 class="member-name">HelioChrome</h4>
-                            <p class="member-role">Frontend / Developer</p>
-                            <div style="margin-top: 15px;">
-                                <a href="https://github.com/4330cfHelioChrome" target="_blank" class="btn secondary" style="padding: 0.4rem 1rem; font-size: 0.85rem;">GitHub ↗</a>
+                <div style="display: flex; flex-direction: column; gap: 15px;">
+                    <!-- 멤버 1 -->
+                    <div style="display: flex; align-items: center; justify-content: space-between; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 15px 20px;">
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <div style="width: 55px; height: 55px; border-radius: 50%; overflow: hidden; background: #222; flex-shrink: 0; border: 1px solid rgba(255,255,255,0.1);">
+                                <img src="./images/logo.png" alt="HelioChrome" style="width: 100%; height: 100%; object-fit: cover;">
                             </div>
+                            <div>
+                                <h4 style="color: #ffffff; font-size: 1.1rem; margin: 0 0 4px 0;">HelioChrome</h4>
+                                <p style="color: #aaaaaa; font-size: 0.85rem; margin: 0;">Frontend / Developer</p>
+                            </div>
+                        </div>
+                        <div>
+                            <a href="https://github.com/4330cfHelioChrome" target="_blank" class="btn secondary" style="padding: 0.4rem 1rem; font-size: 0.85rem;">GitHub ↗</a>
                         </div>
                     </div>
 
-                    <!-- 멤버 2 (다른 협업 개발자 - 필요시 이름, 사진, 링크 수정) -->
-                    <div class="project-card team-card">
-                        <div class="team-avatar-box">
-                            <img src="./images/logo.png" alt="Team Member" class="team-avatar-img">
-                        </div>
-                        <div class="project-content" style="text-align: center;">
-                            <h4 class="member-name">HelioChrome</h4>
-                            <p class="member-role">Scripter / UI Designer</p>
-                            <div style="margin-top: 15px;">
-                                <a href="https://www.roblox.com/users/4560744151/profile" target="_blank" class="btn secondary" style="padding: 0.4rem 1rem; font-size: 0.85rem;">Roblox Profile ↗</a>
+                    <!-- 멤버 2 -->
+                    <div style="display: flex; align-items: center; justify-content: space-between; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 15px 20px;">
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <div style="width: 55px; height: 55px; border-radius: 50%; overflow: hidden; background: #222; flex-shrink: 0; border: 1px solid rgba(255,255,255,0.1);">
+                                <img src="./images/logo.png" alt="Team Member" style="width: 100%; height: 100%; object-fit: cover;">
                             </div>
+                            <div>
+                                <h4 style="color: #ffffff; font-size: 1.1rem; margin: 0 0 4px 0;">HelioChrome</h4>
+                                <p style="color: #aaaaaa; font-size: 0.85rem; margin: 0;">Scripter / UI Designer</p>
+                            </div>
+                        </div>
+                        <div>
+                            <a href="https://www.roblox.com/users/4560744151/profile" target="_blank" class="btn secondary" style="padding: 0.4rem 1rem; font-size: 0.85rem;">Roblox Profile ↗</a>
                         </div>
                     </div>
                 </div>
