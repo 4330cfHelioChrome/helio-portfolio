@@ -76,3 +76,51 @@ nav a:hover, nav a.active {
 .btn:hover {
     background-color: #0051bb;
 }
+
+/* 페이지 공통 컨테이너 */
+.page-container {
+    max-width: 800px;
+    margin: 60px auto;
+    padding: 0 20px;
+}
+
+.page-container h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #1a1a1a;
+}
+
+.page-container p {
+    color: #555;
+    margin-bottom: 2rem;
+}
+
+/* 프로젝트 카드 그리드 레이아웃 */
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+/* 🌟 화려한 호버 이펙트가 적용된 카드 */
+.project-card, .skill-box, .contact-card {
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #eaeaea;
+}
+
+/* 마우스를 올렸을 때 위로 붕 뜨며 그림자가 깊어지는 효과 */
+.project-card:hover, .skill-box:hover, .contact-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 20px rgba(0, 112, 243, 0.15);
+    border-color: #0070f3;
+}
+
+.project-card h3 {
+    margin-bottom: 10px;
+    color: #0070f3;
+}
