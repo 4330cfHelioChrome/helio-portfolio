@@ -159,3 +159,80 @@ nav a:hover, nav a.active {
     margin-bottom: 10px;
     color: #ffffff;
 }
+
+/* 프로필 페이지 전용 스타일 */
+.profile-hero {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.avatar-container {
+    margin: 0 auto 24px auto;
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #262626, #0f0f0f);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #333;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.avatar-placeholder {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #ffffff;
+    letter-spacing: -1px;
+}
+
+.profile-name {
+    font-size: 2.2rem;
+    color: #ffffff;
+    margin-bottom: 8px;
+    font-weight: 700;
+}
+
+.profile-name .username {
+    font-size: 1.2rem;
+    color: #777;
+    font-weight: 400;
+    margin-left: 6px;
+}
+
+.profile-bio {
+    font-size: 1.1rem;
+    color: #a1a1a1;
+    margin-bottom: 12px;
+    font-family: monospace;
+}
+
+.profile-desc {
+    font-size: 1rem;
+    color: #888;
+    max-width: 500px;
+    margin: 0 auto 30px auto;
+}
+
+.profile-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.btn.primary {
+    background-color: #ffffff;
+    color: #0f0f0f;
+}
+
+.btn.secondary {
+    background-color: transparent;
+    color: #ffffff;
+    border: 1px solid #333;
+}
+
+.btn.secondary:hover {
+    background-color: #1a1a1a;
+    border-color: #555;
+    transform: translateY(-2px);
+}
