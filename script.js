@@ -125,13 +125,13 @@ document.addEventListener("DOMContentLoaded", () => {
         // 텍스트 포맷팅 (년/개월)
         let durationText = "";
         if (totalMonths === 0) {
-            durationText = "이번 달 시작";
+            durationText = "Started this month";
         } else if (totalMonths < 12) {
-            durationText = `${totalMonths}개월째 학습 중`;
+            durationText = `Studying for ${totalMonths} months`;
         } else {
             const years = Math.floor(totalMonths / 12);
             const months = totalMonths % 12;
-            durationText = months === 0 ? `${years}년 경력` : `${years}년 ${months}개월 경력`;
+            durationText = months === 0 ? `${years} year experience` : `${years} year and ${months} months of experience`;
         }
 
         if (durationEl) {
