@@ -6,8 +6,11 @@
     <title>HelioChrome | PME</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" href="images/logo.png">
-    <!-- Lenis 라이브러리 CDN (script.js보다 반드시 위에 있어야 합니다) -->
-    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/bundled/lenis.min.js"></script>
+    <!-- 1. 모듈 방식으로 Lenis를 불러와서 전역 객체에 등록 -->
+    <script type="module">
+        import Lenis from 'https://cdn.jsdelivr.net/npm/lenis@1/+esm';
+        window.Lenis = Lenis; // 전역으로 등록하여 script.js에서 쓸 수 있게 함
+    </script>
 
     <script defer src="/_vercel/insights/script.js"></script>
 </head>
