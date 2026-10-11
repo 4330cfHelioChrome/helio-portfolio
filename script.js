@@ -193,11 +193,23 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // 5. 🛞 Lenis 관성 부드러운 스크롤 효과 및 하단 블러 페이드 관리
-    const lenis = new Lenis({
-        duration: 3, 
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        smoothWheel: true
-    });
+    let lenis = null;
+    
+    if (typeof Lenis !== 'undefined') {
+        lenis = new Lenis({
+            duration: 3, 
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            smoothWheel: true
+        });
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+    } else {
+        console.warn("Lenis 라이브러리를 불러오지 못했습니다. 기본 스크롤로 동작합니다.");
+    }
 
     // 하단 블러 요소 동적 생성
     const bottomBlur = document.createElement('div');
@@ -205,16 +217,9 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.appendChild(bottomBlur);
 
     function updateScrollBlur() {
-        // Lenis가 준비되지 않았을 경우를 대비한 방어 코드
-        if (!lenis) return;
-
-        const scrollLimit = lenis.limit || document.documentElement.scrollHeight - window.innerHeight;
-        const currentScroll = lenis.scroll || window.scrollY;
+        const currentScroll = lenis ? lenis.scroll : window.scrollY;
+        const scrollLimit = lenis ? lenis.limit : (document.documentElement.scrollHeight - window.innerHeight);
         
-        // 디버깅용 (개발자 도구 콘솔에서 확인 가능)
-        // console.log("Limit:", scrollLimit, "Current:", currentScroll);
-
-        // 스크롤 여유가 있고(약 50픽셀 이상), 맨 아래에 도달하지 않았을 때
         if (scrollLimit > window.innerHeight + 50 && currentScroll < scrollLimit - 30) {
             bottomBlur.classList.add('visible');
         } else {
@@ -222,18 +227,19 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    lenis.on('scroll', () => {
-        updateScrollBlur();
-    });
+    if (lenis) {
+        lenis.on('scroll', updateScrollBlur);
+    } else {
+        window.addEventListener('scroll', updateScrollBlur);
+    }
 
     window.addEventListener('resize', () => {
-        lenis.resize();
+        if (lenis) lenis.resize();
         updateScrollBlur();
     });
 
-    // 페이지 로딩 직후 및 이미지 로드 완료 시점에 높이 재계산
     window.addEventListener('load', () => {
-        lenis.resize();
+        if (lenis) lenis.resize();
         updateScrollBlur();
     });
     
