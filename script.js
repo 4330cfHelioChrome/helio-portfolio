@@ -127,7 +127,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (totalMonths === 0) {
             durationText = "Started this month";
         } else if (totalMonths < 12) {
-            durationText = `${totalMonths} month(s)`;
+            durationText = totalMonths === 1 ? `${totalMonths} month` : `${totalMonths} months`;
         } else {
             const years = Math.floor(totalMonths / 12);
             const months = totalMonths % 12;
