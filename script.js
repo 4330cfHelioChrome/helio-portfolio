@@ -259,38 +259,37 @@ document.addEventListener("DOMContentLoaded", () => {
     
     setTimeout(updateScrollBlur, 300);
 
-    // 6. ✨ 모든 페이지 공통 부드러운 등장 애니메이션 (안전하고 완벽한 버전)
-    // 페이지 내의 주요 섹션, 카드, 블록들을 자동으로 선택합니다.
+    // 6. ✨ 모든 페이지 공통 부드러운 등장 애니메이션 (최종 수정 버전)
     const revealElements = document.querySelectorAll(
-        ".project-card, .skill-box, .contact-card, .profile-hero, .about-block, .page-container > section > div, .contact-row"
+        ".project-card, .skill-box, .contact-card, .profile-hero, .about-block, .page-container > section > *, .contact-row"
     );
 
     revealElements.forEach((el, index) => {
         el.classList.add("reveal-item");
-        // 요소마다 미세한 시차를 주어 순서대로 나타나게 함
-        el.style.transitionDelay = `${(index % 5) * 0.08}s`;
+        // 요소마다 아주 미세한 시차(Stagger)를 주어 순서대로 등장
+        el.style.transitionDelay = `${(index % 4) * 0.05}s`;
     });
 
+    // 페이지 로드 시 이미 화면에 보이는 요소는 강제로 즉시 활성화
+    revealElements.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight + 100) {
+            el.classList.add("active");
+        }
+    });
+
+    // 스크롤하면서 새로 나타나는 요소 감지
     const revealObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting || entry.boundingClientRect.top < window.innerHeight) {
+            if (entry.isIntersecting) {
                 entry.target.classList.add("active");
                 observer.unobserve(entry.target);
             }
         });
     }, {
-        threshold: 0.05,
+        threshold: 0.03, // 3만 보여도 즉시 감지
         rootMargin: "0px 0px 50px 0px"
     });
 
-    revealElements.forEach(el => {
-        revealObserver.observe(el);
-        
-        // 페이지 로드 시 이미 화면 안에 있는 요소는 즉시 활성화 (안전장치)
-        const rect = el.getBoundingClientRect();
-        if (rect.top < window.innerHeight) {
-            el.classList.add("active");
-            revealObserver.unobserve(el);
-        }
-    });
+    revealElements.forEach(el => revealObserver.observe(el));
 });
