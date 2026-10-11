@@ -147,7 +147,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const barFill = document.createElement("div");
             barFill.className = "skill-bar-fill";
-            barFill.style.cssText = "height: 100%; background: linear-gradient(90deg, #E0E0E0, #FFFFFF); width: 0%; transition: width 1.2s cubic-bezier(0.1, 1, 0.1, 1); border-radius: 3px;";
+            barFill.style.cssText = "height: 100%; background: linear-gradient(90deg, #B0B0B0, #FFFFFF); width: 0%; transition: width 1.2s cubic-bezier(0.1, 1, 0.1, 1); border-radius: 3px;";
             barContainer.appendChild(barFill);
 
             box.appendChild(barContainer);
