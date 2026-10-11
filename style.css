@@ -460,7 +460,7 @@ nav a:hover, nav a.active {
     background: linear-gradient(to top, rgba(10, 10, 10, 0.95) 10%, rgba(10, 10, 10, 0) 100%);
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
-    z-index: 99;
+    z-index: 9999;
     pointer-events: none; /* 마우스 클릭을 방해하지 않음 */
     opacity: 0;
     transition: opacity 0.4s ease;
