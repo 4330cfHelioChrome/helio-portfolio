@@ -90,7 +90,78 @@ document.addEventListener("DOMContentLoaded", () => {
         setTimeout(typeWriter, 300);
     }
 
-    // 3. 🌟 카드 3D 틸트 및 마우스 반사(Sheen) 효과
+    // 3. 📊 기술 스택 기간 계산 및 바(Bar) 그래프 렌더링
+    const skillBoxes = document.querySelectorAll(".skill-box");
+    // 현재 기준 날짜 (2026년 10월)
+    const currentDate = new Date(2026, 9); 
+
+    let skillData = [];
+
+    skillBoxes.forEach(box => {
+        let startStr = box.getAttribute("data-start");
+        // HTML 오타 보정 ("2026-010" -> "2026-10")
+        if (startStr === "2026-010") startStr = "2026-10";
+
+        if (startStr) {
+            const [yearStr, monthStr] = startStr.split("-");
+            const startYear = parseInt(yearStr, 10);
+            const startMonth = parseInt(monthStr, 10) - 1; // 0-based index (0~11)
+
+            // 총 개월 수 계산
+            let totalMonths = (currentDate.getFullYear() - startYear) * 12 + (currentDate.getMonth() - startMonth);
+            if (totalMonths < 0) totalMonths = 0;
+
+            skillData.push({ box, totalMonths });
+        }
+    });
+
+    // 가장 기간이 긴 기술을 100% 기준으로 산정 (최소값 1보장)
+    const maxMonths = Math.max(...skillData.map(item => item.totalMonths), 1);
+
+    skillData.forEach(item => {
+        const { box, totalMonths } = item;
+        const durationEl = box.querySelector(".skill-duration");
+
+        // 텍스트 포맷팅 (년/개월)
+        let durationText = "";
+        if (totalMonths === 0) {
+            durationText = "이번 달 시작";
+        } else if (totalMonths < 12) {
+            durationText = `${totalMonths}개월째 학습 중`;
+        } else {
+            const years = Math.floor(totalMonths / 12);
+            const months = totalMonths % 12;
+            durationText = months === 0 ? `${years}년 경력` : `${years}년 ${months}개월 경력`;
+        }
+
+        if (durationEl) {
+            durationEl.textContent = durationText;
+        }
+
+        // 바(Bar) 컨테이너 및 채우기 요소 동적 생성
+        let barContainer = box.querySelector(".skill-bar-container");
+        if (!barContainer) {
+            barContainer = document.createElement("div");
+            barContainer.className = "skill-bar-container";
+            barContainer.style.cssText = "width: 100%; height: 5px; background: rgba(255, 255, 255, 0.1); border-radius: 3px; margin-top: 10px; overflow: hidden;";
+
+            const barFill = document.createElement("div");
+            barFill.className = "skill-bar-fill";
+            barFill.style.cssText = "height: 100%; background: linear-gradient(90deg, #6366f1, #a855f7); width: 0%; transition: width 1.2s cubic-bezier(0.1, 1, 0.1, 1); border-radius: 3px;";
+            barContainer.appendChild(barFill);
+
+            box.appendChild(barContainer);
+        }
+
+        // 비율 계산 (최소 6%는 보이도록 설정)
+        const percentage = Math.round((totalMonths / maxMonths) * 100);
+        const barFill = barContainer.querySelector(".skill-bar-fill");
+        setTimeout(() => {
+            barFill.style.width = `${Math.max(percentage, 6)}%`;
+        }, 150);
+    });
+
+    // 4. 🌟 카드 3D 틸트 및 마우스 반사(Sheen) 효과
     const cards = document.querySelectorAll(".project-card, .skill-box, .contact-card");
 
     cards.forEach(card => {
@@ -121,10 +192,10 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // 4. 🛞 Lenis 관성 부드러운 스크롤 효과
+    // 5. 🛞 Lenis 관성 부드러운 스크롤 효과
     const lenis = new Lenis({
-        duration: 3, // 값이 클수록 더 묵직하고 부드럽게 감속됩니다 (기본값 보통 1.2)
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // 부드러운 가속/감속 곡선
+        duration: 3, 
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
         smoothWheel: true
     });
 
