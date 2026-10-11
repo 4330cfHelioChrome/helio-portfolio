@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const ctx = canvas.getContext('2d');
 
     let particlesArray = [];
-    const numberOfParticles = 70; // 파티클 개수
+    const numberOfParticles = 90; // 파티클 개수
 
     function resizeCanvas() {
         canvas.width = window.innerWidth;
