@@ -127,7 +127,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (totalMonths === 0) {
             durationText = "Started this month";
         } else if (totalMonths < 12) {
-            durationText = `${totalMonths} months`;
+            durationText = `${totalMonths} month(s)`;
         } else {
             const years = Math.floor(totalMonths / 12);
             const months = totalMonths % 12;
@@ -147,7 +147,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const barFill = document.createElement("div");
             barFill.className = "skill-bar-fill";
-            barFill.style.cssText = "height: 100%; background: linear-gradient(90deg, #6366f1, #a855f7); width: 0%; transition: width 1.2s cubic-bezier(0.1, 1, 0.1, 1); border-radius: 3px;";
+            barFill.style.cssText = "height: 100%; background: linear-gradient(90deg, #E0E0E0, #FFFFFF); width: 0%; transition: width 1.2s cubic-bezier(0.1, 1, 0.1, 1); border-radius: 3px;";
             barContainer.appendChild(barFill);
 
             box.appendChild(barContainer);
