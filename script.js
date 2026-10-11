@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const distance = Math.sqrt(dx * dx + dy * dy);
     
                 if (distance < 130) {
-                    ctx.strokeStyle = `rgba(255, 255, 255, ${0.2 * (1 - distance / 130)})`;
+                    ctx.strokeStyle = `rgba(255, 255, 255, ${0.3 * (1 - distance / 130)})`;
                     ctx.lineWidth = 0.5;
                     ctx.beginPath();
                     
