@@ -205,11 +205,17 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.appendChild(bottomBlur);
 
     function updateScrollBlur() {
-        const scrollLimit = lenis.limit;
-        const currentScroll = lenis.scroll;
+        // Lenis가 준비되지 않았을 경우를 대비한 방어 코드
+        if (!lenis) return;
+
+        const scrollLimit = lenis.limit || document.documentElement.scrollHeight - window.innerHeight;
+        const currentScroll = lenis.scroll || window.scrollY;
         
-        // 스크롤할 내용이 화면보다 충분히 길고, 맨 아래(오차 범위 20px)에 도달하지 않았을 때만 표시
-        if (scrollLimit > window.innerHeight && currentScroll < scrollLimit - 20) {
+        // 디버깅용 (개발자 도구 콘솔에서 확인 가능)
+        // console.log("Limit:", scrollLimit, "Current:", currentScroll);
+
+        // 스크롤 여유가 있고(약 50픽셀 이상), 맨 아래에 도달하지 않았을 때
+        if (scrollLimit > window.innerHeight + 50 && currentScroll < scrollLimit - 30) {
             bottomBlur.classList.add('visible');
         } else {
             bottomBlur.classList.remove('visible');
@@ -220,9 +226,18 @@ document.addEventListener("DOMContentLoaded", () => {
         updateScrollBlur();
     });
 
-    // 화면 크기가 바뀔 때나 콘텐츠가 로드된 직후 체크
-    window.addEventListener('resize', updateScrollBlur);
-    setTimeout(updateScrollBlur, 200);
+    window.addEventListener('resize', () => {
+        lenis.resize();
+        updateScrollBlur();
+    });
+
+    // 페이지 로딩 직후 및 이미지 로드 완료 시점에 높이 재계산
+    window.addEventListener('load', () => {
+        lenis.resize();
+        updateScrollBlur();
+    });
+    
+    setTimeout(updateScrollBlur, 300);
 
     function raf(time) {
         lenis.raf(time);
