@@ -520,5 +520,5 @@ nav a:hover, nav a.active {
 .avatar-container {
     opacity: 0;
     animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    animation-delay: calc(var(--i, 0) * 0.07s); /* 자바스크립트가 부여한 순번에 따라 자동 지연 */
+    animation-delay: calc(var(--i, 0) * 0.1s); /* 자바스크립트가 부여한 순번에 따라 자동 지연 */
 }
