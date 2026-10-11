@@ -127,11 +127,11 @@ document.addEventListener("DOMContentLoaded", () => {
         if (totalMonths === 0) {
             durationText = "Started this month";
         } else if (totalMonths < 12) {
-            durationText = `Studying for ${totalMonths} months`;
+            durationText = `${totalMonths} months`;
         } else {
             const years = Math.floor(totalMonths / 12);
             const months = totalMonths % 12;
-            durationText = months === 0 ? `${years} year experience` : `${years} year and ${months} months of experience`;
+            durationText = months === 0 ? `${years} yr` : `${years} yr ${months} mo`;
         }
 
         if (durationEl) {
