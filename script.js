@@ -244,10 +244,4 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     
     setTimeout(updateScrollBlur, 300);
-
-    function raf(time) {
-        lenis.raf(time);
-        requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
 });
