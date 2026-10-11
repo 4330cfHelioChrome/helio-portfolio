@@ -1,5 +1,6 @@
 html {
     scroll-behavior: smooth;
+    scrollbar-gutter: stable; /* 스크롤바 영역을 미리 확보하여 레이아웃 너비 흔들림 방지 */
 }
 
 /* 전체 초기화 및 폰트 */
@@ -469,4 +470,22 @@ nav a:hover, nav a.active {
 /* 스크롤이 필요하고 맨 아래가 아닐 때 활성화 */
 .scroll-bottom-blur.visible {
     opacity: 1;
+}
+
+/* 🖱️ 모던 스크롤바 디자인 (웹킷 브라우저용 - 크롬, 사파리, 엣지) */
+::-webkit-scrollbar {
+    width: 6px; /* 스크롤바 두께를 얇게 설정 */
+}
+
+::-webkit-scrollbar-track {
+    background: #0a0a0a; /* 배경색과 맞춤 */
+}
+
+::-webkit-scrollbar-thumb {
+    background: #2a2a2a; /* 스크롤바 색상 */
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #444444; /* 마우스 올렸을 때 색상 */
 }
