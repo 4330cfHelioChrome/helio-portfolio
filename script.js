@@ -259,44 +259,34 @@ document.addEventListener("DOMContentLoaded", () => {
     
     setTimeout(updateScrollBlur, 300);
 
-    // 6. ✨ 카드 및 텍스트 스크롤/로드 시 부드러운 등장 애니메이션 (개선된 버전)
-    const targetSelectors = [
-        ".project-card", 
-        ".skill-box", 
-        ".contact-card", 
-        ".page-container h2", 
-        ".page-container p", 
-        ".about-block", 
-        ".contact-row",
-        ".hero h1",
-        ".hero p",
-        ".profile-hero > *"
-    ];
-
-    const revealElements = document.querySelectorAll(targetSelectors.join(", "));
+    // 6. ✨ 모든 페이지 공통 부드러운 등장 애니메이션 (안전하고 완벽한 버전)
+    // 페이지 내의 주요 섹션, 카드, 블록들을 자동으로 선택합니다.
+    const revealElements = document.querySelectorAll(
+        ".project-card, .skill-box, .contact-card, .profile-hero, .about-block, .page-container > section > div, .contact-row"
+    );
 
     revealElements.forEach((el, index) => {
         el.classList.add("reveal-item");
-        el.style.transitionDelay = `${(index % 4) * 0.06}s`;
+        // 요소마다 미세한 시차를 주어 순서대로 나타나게 함
+        el.style.transitionDelay = `${(index % 5) * 0.08}s`;
     });
 
     const revealObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
-            // 요소가 화면에 들어왔거나, 이미 화면 상단에 걸쳐있는 경우
             if (entry.isIntersecting || entry.boundingClientRect.top < window.innerHeight) {
                 entry.target.classList.add("active");
                 observer.unobserve(entry.target);
             }
         });
     }, {
-        threshold: 0.05, // 감지 기준을 조금 더 낮춤 (5%만 보여도 작동)
-        rootMargin: "0px 0px 50px 0px" // 화면 아래쪽 50px 미리 감지
+        threshold: 0.05,
+        rootMargin: "0px 0px 50px 0px"
     });
 
     revealElements.forEach(el => {
         revealObserver.observe(el);
         
-        // 🔍 페이지 로드 시 이미 화면 안에 있는 요소는 강제로 즉시 활성화 (안전장치)
+        // 페이지 로드 시 이미 화면 안에 있는 요소는 즉시 활성화 (안전장치)
         const rect = el.getBoundingClientRect();
         if (rect.top < window.innerHeight) {
             el.classList.add("active");
