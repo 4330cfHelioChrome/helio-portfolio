@@ -515,7 +515,7 @@ nav a:hover, nav a.active {
     }
 }
 
-/* 주요 카드, 박스, 텍스트 요소들에 애니메이션 자동 적용 */
+/* 처음 시작할 때 아예 보이지 않도록 opacity: 0을 미리 지정 */
 .project-card, 
 .skill-box, 
 .contact-card, 
@@ -524,6 +524,7 @@ nav a:hover, nav a.active {
 .page-container h2, 
 .page-container p, 
 .contact-row {
+    opacity: 0; 
     animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
