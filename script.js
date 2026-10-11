@@ -259,4 +259,19 @@ document.addEventListener("DOMContentLoaded", () => {
     
     setTimeout(updateScrollBlur, 300);
 
+    // 📌 그리드 및 리스트 내부 요소들에 자동으로 순서(--i) 번호 부여
+    const autoGroupSelectors = [
+        ".project-grid", 
+        ".about-details", 
+        ".contact-links-list", 
+        "main .page-container > section > div > div"
+    ];
+
+    document.querySelectorAll(".project-grid, .about-details, .contact-links-list").forEach(container => {
+        // 컨테이너 내부의 직접적인 자식 요소들에 순번 부여
+        Array.from(container.children).forEach((child, index) => {
+            child.style.setProperty('--i', index);
+        });
+    });
+
 });
