@@ -259,19 +259,34 @@ document.addEventListener("DOMContentLoaded", () => {
     
     setTimeout(updateScrollBlur, 300);
 
-    // 📌 그리드 및 리스트 내부 요소들에 자동으로 순서(--i) 번호 부여
-    const autoGroupSelectors = [
-        ".project-grid", 
-        ".about-details", 
-        ".contact-links-list", 
-        "main .page-container > section > div > div"
-    ];
-
-    document.querySelectorAll(".project-grid, .about-details, .contact-links-list").forEach(container => {
-        // 컨테이너 내부의 직접적인 자식 요소들에 순번 부여
-        Array.from(container.children).forEach((child, index) => {
+    // 📌 페이지 내 모든 주요 컨테이너 및 텍스트/카드들에 자동으로 순서(--i) 번호 부여
+    
+    // 1. 홈 화면(index.html) 프로필 영역 순차 지정
+    const profileHero = document.querySelector(".profile-hero");
+    if (profileHero) {
+        Array.from(profileHero.children).forEach((child, index) => {
             child.style.setProperty('--i', index);
         });
+    }
+
+    // 2. 각 페이지 상단 타이틀 및 설명 글 순차 지정
+    const pageSections = document.querySelectorAll(".page-container > section");
+    pageSections.forEach(section => {
+        Array.from(section.children).forEach((child, index) => {
+            // 그리드나 리스트 등 내부 카드가 있는 컨테이너는 통째로 순번 부여
+            child.style.setProperty('--i', index);
+        });
+    });
+
+    // 3. 그리드, 리스트, PME 팀원 목록 등 내부 카드/아이템들 순차 지정
+    const itemContainers = document.querySelectorAll(".project-grid, .about-details, .contact-links-list, main section div div");
+    itemContainers.forEach(container => {
+        const items = container.querySelectorAll(":scope > .project-card, :scope > .skill-box, :scope > .contact-card, :scope > .about-block, :scope > .contact-row, :scope > .team-member-card");
+        if (items.length > 0) {
+            items.forEach((item, index) => {
+                item.style.setProperty('--i', index);
+            });
+        }
     });
 
 });
