@@ -1,12 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // 1. 🌌 배경 파티클 및 은은한 연결선 이펙트 (Canvas)
+    // 1. 🌌 배경 파티클 및 옅은 점선 연결선 이펙트 (Canvas)
     const canvas = document.createElement('canvas');
     canvas.id = 'bg-canvas';
     document.body.prepend(canvas);
     const ctx = canvas.getContext('2d');
 
     let particlesArray = [];
-    const numberOfParticles = 90; // 파티클 개수
+    const numberOfParticles = 75; // 파티클 개수
 
     function resizeCanvas() {
         canvas.width = window.innerWidth;
@@ -38,9 +38,6 @@ document.addEventListener("DOMContentLoaded", () => {
             ctx.fill();
         }
     }
-    
-    let particlesArray = [];
-    const numberOfParticles = 75; // 파티클 개수 (필요시 조절)
     
     function initParticles() {
         particlesArray = [];
@@ -104,16 +101,15 @@ document.addEventListener("DOMContentLoaded", () => {
     // 3. 📊 기술 스택 기간 계산 및 바(Bar) 그래프 렌더링
     const skillBoxes = document.querySelectorAll(".skill-box");
 
-    // 📌 [추가] Tech Stack 카드들을 '오래된 날짜순(오름차순)'으로 DOM에서 정렬
+    // Tech Stack 카드들을 '오래된 날짜순(오름차순)'으로 DOM에서 정렬
     const skillContainer = document.querySelector(".about-block .project-grid");
     if (skillContainer) {
         const boxesArray = Array.from(skillContainer.querySelectorAll(".skill-box"));
         boxesArray.sort((a, b) => {
             const dateA = a.getAttribute("data-start") || "9999-99";
             const dateB = b.getAttribute("data-start") || "9999-99";
-            return dateA.localeCompare(dateB); // 오래된 날짜가 앞으로 오도록 정렬
+            return dateA.localeCompare(dateB);
         });
-        // 정렬된 순서대로 DOM에 다시 재배치
         boxesArray.forEach(box => skillContainer.appendChild(box));
     }
     
@@ -124,15 +120,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     skillBoxes.forEach(box => {
         let startStr = box.getAttribute("data-start");
-        // HTML 오타 보정 ("2026-010" -> "2026-10")
         if (startStr === "2026-010") startStr = "2026-10";
 
         if (startStr) {
             const [yearStr, monthStr] = startStr.split("-");
             const startYear = parseInt(yearStr, 10);
-            const startMonth = parseInt(monthStr, 10) - 1; // 0-based index (0~11)
+            const startMonth = parseInt(monthStr, 10) - 1;
 
-            // 총 개월 수 계산
             let totalMonths = (currentDate.getFullYear() - startYear) * 12 + (currentDate.getMonth() - startMonth);
             if (totalMonths < 0) totalMonths = 0;
 
@@ -140,14 +134,12 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // 가장 기간이 긴 기술을 100% 기준으로 산정 (최소값 1보장)
     const maxMonths = Math.max(...skillData.map(item => item.totalMonths), 1);
 
     skillData.forEach(item => {
         const { box, totalMonths } = item;
         const durationEl = box.querySelector(".skill-duration");
 
-        // 텍스트 포맷팅 (년/개월)
         let durationText = "";
         if (totalMonths === 0) {
             durationText = "Started this month";
@@ -163,7 +155,6 @@ document.addEventListener("DOMContentLoaded", () => {
             durationEl.textContent = durationText;
         }
 
-        // 바(Bar) 컨테이너 및 채우기 요소 동적 생성
         let barContainer = box.querySelector(".skill-bar-container");
         if (!barContainer) {
             barContainer = document.createElement("div");
@@ -178,7 +169,6 @@ document.addEventListener("DOMContentLoaded", () => {
             box.appendChild(barContainer);
         }
 
-        // 비율 계산 (최소 6%는 보이도록 설정)
         const percentage = Math.round((totalMonths / maxMonths) * 100);
         const barFill = barContainer.querySelector(".skill-bar-fill");
         setTimeout(() => {
@@ -236,7 +226,6 @@ document.addEventListener("DOMContentLoaded", () => {
         console.warn("Lenis 라이브러리를 불러오지 못했습니다. 기본 스크롤로 동작합니다.");
     }
 
-    // 하단 블러 요소 동적 생성
     const bottomBlur = document.createElement('div');
     bottomBlur.className = 'scroll-bottom-blur';
     document.body.appendChild(bottomBlur);
@@ -270,9 +259,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
     setTimeout(updateScrollBlur, 300);
 
-    // 📌 페이지 내 모든 주요 컨테이너 및 텍스트/카드들에 자동으로 순서(--i) 번호 부여
-    
-    // 1. 홈 화면(index.html) 프로필 영역 순차 지정
+    // 6. 📌 페이지 내 모든 주요 요소들에 자동으로 순서(--i) 번호 부여
     const profileHero = document.querySelector(".profile-hero");
     if (profileHero) {
         Array.from(profileHero.children).forEach((child, index) => {
@@ -280,16 +267,13 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // 2. 각 페이지 상단 타이틀 및 설명 글 순차 지정
     const pageSections = document.querySelectorAll(".page-container > section");
     pageSections.forEach(section => {
         Array.from(section.children).forEach((child, index) => {
-            // 그리드나 리스트 등 내부 카드가 있는 컨테이너는 통째로 순번 부여
             child.style.setProperty('--i', index);
         });
     });
 
-    // 3. 그리드, 리스트, PME 팀원 목록 등 내부 카드/아이템들 순차 지정
     const itemContainers = document.querySelectorAll(".project-grid, .about-details, .contact-links-list, main section div div");
     itemContainers.forEach(container => {
         const items = container.querySelectorAll(":scope > .project-card, :scope > .skill-box, :scope > .contact-card, :scope > .about-block, :scope > .contact-row, :scope > .team-member-card");
@@ -299,5 +283,4 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
     });
-
 });
