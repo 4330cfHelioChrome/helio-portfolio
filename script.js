@@ -303,3 +303,4 @@ document.addEventListener("DOMContentLoaded", () => {
             revealObserver.unobserve(el);
         }
     });
+});
