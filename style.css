@@ -490,7 +490,7 @@ nav a:hover, nav a.active {
     background: #444444; /* 마우스 올렸을 때 색상 */
 }
 
-/* ✨ 전체 요소 통합 순차적 등장 애니메이션 */
+/* ✨ 통합 애니메이션 및 자동 지연(Delay) 처리 */
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -502,74 +502,14 @@ nav a:hover, nav a.active {
     }
 }
 
-/* 1. 애니메이션 대상 요소들의 초기 상태 */
+/* 대상 요소들에 공통 적용 (자바스크립트가 부여한 --i 변수 활용) */
 .project-card, 
 .skill-box, 
 .contact-card, 
 .about-block, 
-.contact-row,
-.team-member-card,
-.profile-hero h1,
-.profile-hero h2,
-.profile-hero h3,
-.profile-hero p,
-.page-container h2,
-.page-container h3,
-.page-container p,
-.about-intro,
-.contact-intro,
-.profile-desc,
-.profile-bio,
-.avatar-container,
-.profile-actions,
-.btn {
+.contact-row, 
+.team-member-card {
     opacity: 0;
     animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: calc(var(--i, 0) * 0.07s); /* 인덱스 번호에 따라 자동으로 0.07초씩 지연 */
 }
-
-/* 2. 상단 타이틀 및 설명 텍스트 순차 지연 */
-.profile-hero h1, .profile-hero h2 { animation-delay: 0.05s; }
-.avatar-container { animation-delay: 0.08s; }
-.profile-bio { animation-delay: 0.1s; }
-.profile-desc, .about-intro, .contact-intro { animation-delay: 0.15s; }
-.profile-actions, .page-container > section > h2 { animation-delay: 0.2s; }
-
-/* Projects 및 PME 등의 섹션 내부 p 및 h3 텍스트 */
-.page-container section > p { animation-delay: 0.25s; }
-.page-container section h3 { animation-delay: 0.2s; }
-
-/* PME 팀원 카드 개별 순차 지연 */
-.team-member-card:nth-child(1) { animation-delay: 0.3s; }
-.team-member-card:nth-child(2) { animation-delay: 0.45s; }
-
-/* 4. 그리드 카드들(Tech Stack, Projects 등) 하나씩 차례대로 나타나도록 개별 지연 부여 */
-.project-grid .project-card:nth-child(1)  { animation-delay: 0.1s; }
-.project-grid .project-card:nth-child(2)  { animation-delay: 0.15s; }
-.project-grid .project-card:nth-child(3)  { animation-delay: 0.2s; }
-.project-grid .project-card:nth-child(4)  { animation-delay: 0.25s; }
-.project-grid .project-card:nth-child(5)  { animation-delay: 0.3s; }
-.project-grid .project-card:nth-child(6)  { animation-delay: 0.35s; }
-.project-grid .project-card:nth-child(7)  { animation-delay: 0.4s; }
-.project-grid .project-card:nth-child(8)  { animation-delay: 0.45s; }
-.project-grid .project-card:nth-child(9)  { animation-delay: 0.5s; }
-.project-grid .project-card:nth-child(10) { animation-delay: 0.55s; }
-.project-grid .project-card:nth-child(11) { animation-delay: 0.6s; }
-.project-grid .project-card:nth-child(12) { animation-delay: 0.65s; }
-.project-grid .project-card:nth-child(13) { animation-delay: 0.7s; }
-.project-grid .project-card:nth-child(14) { animation-delay: 0.75s; }
-.project-grid .project-card:nth-child(15) { animation-delay: 0.8s; }
-.project-grid .project-card:nth-child(16) { animation-delay: 0.85s; }
-.project-grid .project-card:nth-child(17) { animation-delay: 0.9s; }
-.project-grid .project-card:nth-child(18) { animation-delay: 0.95s; }
-.project-grid .project-card:nth-child(19) { animation-delay: 1.0s; }
-.project-grid .project-card:nth-child(20) { animation-delay: 1.05s; }
-
-/* About 페이지 블록 순서 */
-.about-details .about-block:nth-child(1) { animation-delay: 0.15s; }
-.about-details .about-block:nth-child(2) { animation-delay: 0.3s; }
-
-/* Contact 페이지 리스트 순서 */
-.contact-links-list .contact-row:nth-child(1) { animation-delay: 0.15s; }
-.contact-links-list .contact-row:nth-child(2) { animation-delay: 0.2s; }
-.contact-links-list .contact-row:nth-child(3) { animation-delay: 0.25s; }
-.contact-links-list .contact-row:nth-child(4) { animation-delay: 0.3s; }
