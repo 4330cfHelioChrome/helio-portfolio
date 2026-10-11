@@ -192,12 +192,37 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // 5. 🛞 Lenis 관성 부드러운 스크롤 효과
+    // 5. 🛞 Lenis 관성 부드러운 스크롤 효과 및 하단 블러 페이드 관리
     const lenis = new Lenis({
         duration: 3, 
         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
         smoothWheel: true
     });
+
+    // 하단 블러 요소 동적 생성
+    const bottomBlur = document.createElement('div');
+    bottomBlur.className = 'scroll-bottom-blur';
+    document.body.appendChild(bottomBlur);
+
+    function updateScrollBlur() {
+        const scrollLimit = lenis.limit;
+        const currentScroll = lenis.scroll;
+        
+        // 스크롤할 내용이 화면보다 충분히 길고, 맨 아래(오차 범위 20px)에 도달하지 않았을 때만 표시
+        if (scrollLimit > window.innerHeight && currentScroll < scrollLimit - 20) {
+            bottomBlur.classList.add('visible');
+        } else {
+            bottomBlur.classList.remove('visible');
+        }
+    }
+
+    lenis.on('scroll', () => {
+        updateScrollBlur();
+    });
+
+    // 화면 크기가 바뀔 때나 콘텐츠가 로드된 직후 체크
+    window.addEventListener('resize', updateScrollBlur);
+    setTimeout(updateScrollBlur, 200);
 
     function raf(time) {
         lenis.raf(time);
