@@ -490,15 +490,14 @@ nav a:hover, nav a.active {
     background: #444444; /* 마우스 올렸을 때 색상 */
 }
 
-/* ✨ 부드러운 등장 애니메이션 초기 상태 */
+/* ✨ 부드러운 등장 애니메이션 초기 및 활성 상태 */
 .reveal-item {
     opacity: 0;
-    transform: translateY(25px);
-    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translateY(20px);
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     will-change: opacity, transform;
 }
 
-/* 화면에 나타났을 때의 활성화 상태 */
 .reveal-item.active {
     opacity: 1;
     transform: translateY(0);
