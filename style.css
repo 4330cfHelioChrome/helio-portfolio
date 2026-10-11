@@ -502,3 +502,41 @@ nav a:hover, nav a.active {
     opacity: 1;
     transform: translateY(0);
 }
+
+/* ✨ CSS 기반 부드러운 순차적 등장 애니메이션 */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 주요 카드, 박스, 텍스트 요소들에 애니메이션 자동 적용 */
+.project-card, 
+.skill-box, 
+.contact-card, 
+.profile-hero, 
+.about-block, 
+.page-container h2, 
+.page-container p, 
+.contact-row {
+    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* 요소마다 순서대로 나타나도록 시차(Delay) 부여 */
+.project-grid .project-card:nth-child(1) { animation-delay: 0.1s; }
+.project-grid .project-card:nth-child(2) { animation-delay: 0.2s; }
+.project-grid .project-card:nth-child(3) { animation-delay: 0.3s; }
+.project-grid .project-card:nth-child(4) { animation-delay: 0.4s; }
+
+.about-details .about-block:nth-child(1) { animation-delay: 0.1s; }
+.about-details .about-block:nth-child(2) { animation-delay: 0.25s; }
+
+.contact-links-list .contact-row:nth-child(1) { animation-delay: 0.1s; }
+.contact-links-list .contact-row:nth-child(2) { animation-delay: 0.2s; }
+.contact-links-list .contact-row:nth-child(3) { animation-delay: 0.3s; }
+.contact-links-list .contact-row:nth-child(4) { animation-delay: 0.4s; }
