@@ -449,3 +449,24 @@ nav a:hover, nav a.active {
     font-size: 0.8rem;
     font-family: monospace;
 }
+
+/* 🌊 하단 스크롤 인디케이터 블러 오버레이 */
+.scroll-bottom-blur {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 90px;
+    background: linear-gradient(to top, rgba(10, 10, 10, 0.95) 10%, rgba(10, 10, 10, 0) 100%);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    z-index: 99;
+    pointer-events: none; /* 마우스 클릭을 방해하지 않음 */
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+/* 스크롤이 필요하고 맨 아래가 아닐 때 활성화 */
+.scroll-bottom-blur.visible {
+    opacity: 1;
+}
