@@ -259,40 +259,4 @@ document.addEventListener("DOMContentLoaded", () => {
     
     setTimeout(updateScrollBlur, 300);
 
-    // 6. ✨ 스크롤 연동 순차적 등장 애니메이션 (Intersection Observer + 그리드 순서 제어)
-    const revealElements = document.querySelectorAll(
-        ".project-card, .skill-box, .contact-card, .profile-hero, .about-block, .page-container h2, .page-container p, .contact-row"
-    );
-
-    revealElements.forEach(el => {
-        el.classList.add("reveal-item");
-    });
-
-    // 📌 그리드(컨테이너)별로 내부 카드들에 순서대로 시차(Delay) 부여
-    const containers = document.querySelectorAll(".project-grid, .about-details, .contact-links-list");
-    containers.forEach(container => {
-        const items = container.querySelectorAll(".project-card, .skill-box, .contact-row, .about-block");
-        items.forEach((item, index) => {
-            // 한 줄에 여러 개가 있을 때 왼쪽부터 순서대로 0.06초씩 차이가 나게 설정
-            const staggerDelay = (index % 4) * 0.07;
-            item.style.transitionDelay = `${staggerDelay}s`;
-        });
-    });
-
-    // 📌 화면 안에 들어왔을 때만 애니메이션 실행
-    const revealObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add("active");
-                observer.unobserve(entry.target); // 한 번 나타난 요소는 관찰 해제
-            }
-        });
-    }, {
-        threshold: 0.1, // 요소가 10% 정도 보일 때 시작
-        rootMargin: "0px 0px -40px 0px"
-    });
-
-    revealElements.forEach(el => {
-        revealObserver.observe(el);
-    });
 });
