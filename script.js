@@ -258,4 +258,40 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     
     setTimeout(updateScrollBlur, 300);
+
+    // 6. ✨ 카드 및 텍스트 스크롤/로드 시 부드러운 등장 애니메이션 (Intersection Observer)
+    const targetSelectors = [
+        ".project-card", 
+        ".skill-box", 
+        ".contact-card", 
+        ".page-container h2", 
+        ".page-container p", 
+        ".about-block", 
+        ".contact-row",
+        ".hero h1",
+        ".hero p",
+        ".profile-hero > *"
+    ];
+
+    const revealElements = document.querySelectorAll(targetSelectors.join(", "));
+
+    revealElements.forEach((el, index) => {
+        el.classList.add("reveal-item");
+        // 같은 구역 내에서 요소마다 아주 미세한 시차(Stagger)를 줌
+        el.style.transitionDelay = `${(index % 4) * 0.08}s`;
+    });
+
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("active");
+                observer.unobserve(entry.target); // 한 번 나타난 후에는 관찰 해제
+            }
+        });
+    }, {
+        threshold: 0.12, // 요소가 12% 정도 보일 때 애니메이션 시작
+        rootMargin: "0px 0px -40px 0px"
+    });
+
+    revealElements.forEach(el => revealObserver.observe(el));
 });
