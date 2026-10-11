@@ -38,7 +38,10 @@ document.addEventListener("DOMContentLoaded", () => {
             ctx.fill();
         }
     }
-
+    
+    let particlesArray = [];
+    const numberOfParticles = 75; // 파티클 개수 (필요시 조절)
+    
     function initParticles() {
         particlesArray = [];
         for (let i = 0; i < numberOfParticles; i++) {
@@ -46,26 +49,34 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
     initParticles();
-
+    
     function handleParticles() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
         for (let i = 0; i < particlesArray.length; i++) {
             particlesArray[i].update();
             particlesArray[i].draw();
-
-            // 파티클 사이 거리가 가까우면 은은한 선으로 연결
-            for (let j = i; j < particlesArray.length; j++) {
+    
+            // 파티클 사이 거리가 가까우면 옅은 점선으로 연결
+            for (let j = i + 1; j < particlesArray.length; j++) {
                 const dx = particlesArray[i].x - particlesArray[j].x;
                 const dy = particlesArray[i].y - particlesArray[j].y;
                 const distance = Math.sqrt(dx * dx + dy * dy);
-
+    
                 if (distance < 130) {
                     ctx.strokeStyle = `rgba(255, 255, 255, ${0.06 * (1 - distance / 130)})`;
                     ctx.lineWidth = 0.5;
                     ctx.beginPath();
+                    
+                    // ✨ 점선 효과 적용 ([선 길이, 간격 길이])
+                    ctx.setLineDash([2, 4]); 
+                    
                     ctx.moveTo(particlesArray[i].x, particlesArray[i].y);
                     ctx.lineTo(particlesArray[j].x, particlesArray[j].y);
                     ctx.stroke();
+                    
+                    // ✨ 다른 요소에 점선이 영향을 주지 않도록 초기화
+                    ctx.setLineDash([]); 
                 }
             }
         }
