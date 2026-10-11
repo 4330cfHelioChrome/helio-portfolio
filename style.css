@@ -538,9 +538,9 @@ nav a:hover, nav a.active {
 .page-container section > p { animation-delay: 0.25s; }
 .page-container section h3 { animation-delay: 0.2s; }
 
-/* 3. PME 팀원 카드 개별 순차 지연 */
+/* PME 팀원 카드 개별 순차 지연 */
 .team-member-card:nth-child(1) { animation-delay: 0.3s; }
-.team-member-card:nth-child(2) { animation-delay: 0.4s; }
+.team-member-card:nth-child(2) { animation-delay: 0.45s; }
 
 /* 4. 그리드 카드들(Tech Stack, Projects 등) 하나씩 차례대로 나타나도록 개별 지연 부여 */
 .project-grid .project-card:nth-child(1)  { animation-delay: 0.1s; }
