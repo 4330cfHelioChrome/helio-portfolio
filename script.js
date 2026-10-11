@@ -92,6 +92,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 3. 📊 기술 스택 기간 계산 및 바(Bar) 그래프 렌더링
     const skillBoxes = document.querySelectorAll(".skill-box");
+
+    // 📌 [추가] Tech Stack 카드들을 '오래된 날짜순(오름차순)'으로 DOM에서 정렬
+    const skillContainer = document.querySelector(".about-block .project-grid");
+    if (skillContainer) {
+        const boxesArray = Array.from(skillContainer.querySelectorAll(".skill-box"));
+        boxesArray.sort((a, b) => {
+            const dateA = a.getAttribute("data-start") || "9999-99";
+            const dateB = b.getAttribute("data-start") || "9999-99";
+            return dateA.localeCompare(dateB); // 오래된 날짜가 앞으로 오도록 정렬
+        });
+        // 정렬된 순서대로 DOM에 다시 재배치
+        boxesArray.forEach(box => skillContainer.appendChild(box));
+    }
+    
     // 현재 기준 날짜 (2026년 10월)
     const currentDate = new Date(2026, 9); 
 
