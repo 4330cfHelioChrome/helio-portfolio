@@ -502,14 +502,23 @@ nav a:hover, nav a.active {
     }
 }
 
-/* 대상 요소들에 공통 적용 (자바스크립트가 부여한 --i 변수 활용) */
+/* 애니메이션 대상 요소들 통합 적용 */
 .project-card, 
 .skill-box, 
 .contact-card, 
 .about-block, 
 .contact-row, 
-.team-member-card {
+.team-member-card,
+.profile-hero h1,
+.profile-hero h2,
+.profile-hero h3,
+.profile-hero p,
+.page-container h2,
+.page-container h3,
+.page-container p,
+.profile-hero .btn,
+.avatar-container {
     opacity: 0;
     animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    animation-delay: calc(var(--i, 0) * 0.07s); /* 인덱스 번호에 따라 자동으로 0.07초씩 지연 */
+    animation-delay: calc(var(--i, 0) * 0.07s); /* 자바스크립트가 부여한 순번에 따라 자동 지연 */
 }
