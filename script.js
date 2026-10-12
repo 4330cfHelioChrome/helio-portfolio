@@ -226,39 +226,6 @@ document.addEventListener("DOMContentLoaded", () => {
         console.warn("Lenis 라이브러리를 불러오지 못했습니다. 기본 스크롤로 동작합니다.");
     }
 
-    const bottomBlur = document.createElement('div');
-    bottomBlur.className = 'scroll-bottom-blur';
-    document.body.appendChild(bottomBlur);
-
-    function updateScrollBlur() {
-        const currentScroll = lenis ? lenis.scroll : window.scrollY;
-        const scrollLimit = lenis ? lenis.limit : (document.documentElement.scrollHeight - window.innerHeight);
-        
-        if (scrollLimit > window.innerHeight + 50 && currentScroll < scrollLimit - 30) {
-            bottomBlur.classList.add('visible');
-        } else {
-            bottomBlur.classList.remove('visible');
-        }
-    }
-
-    if (lenis) {
-        lenis.on('scroll', updateScrollBlur);
-    } else {
-        window.addEventListener('scroll', updateScrollBlur);
-    }
-
-    window.addEventListener('resize', () => {
-        if (lenis) lenis.resize();
-        updateScrollBlur();
-    });
-
-    window.addEventListener('load', () => {
-        if (lenis) lenis.resize();
-        updateScrollBlur();
-    });
-    
-    setTimeout(updateScrollBlur, 300);
-
     // 6. 📌 페이지 내 모든 주요 요소들에 자동으로 순서(--i) 번호 부여
     const profileHero = document.querySelector(".profile-hero");
     if (profileHero) {
