@@ -547,12 +547,12 @@ nav a:hover, nav a.active {
 footer {
     text-align: center;
     padding: 40px 20px;
-    margin-top: 60px;
+    margin-top: 80px;
     border-top: 1px solid #222222;
     background-color: #0a0a0a;
     color: #777777;
     font-size: 0.85rem;
-    font-family: monospace;
+    font-family: Segoe UI;
     letter-spacing: -0.5px;
 }
 
