@@ -180,8 +180,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const cards = document.querySelectorAll(".project-card, .skill-box, .contact-card");
     
     cards.forEach(card => {
+        // 💡 애니메이션이 끝난 후 transform 충돌 방지
+        card.addEventListener("animationend", () => {
+            card.style.animation = "none";
+        });
+    
         card.addEventListener("mousemove", (e) => {
-            card.style.transition = "none"; // 💡 실시간 추적을 위해 트랜지션 제거
+            card.style.transition = "none";
             
             const rect = card.getBoundingClientRect();
             const x = e.clientX - rect.left;
@@ -208,7 +213,7 @@ document.addEventListener("DOMContentLoaded", () => {
             card.style.transition = "none";
         });
     });
-
+    
     // 5. 🛞 Lenis 관성 부드러운 스크롤 효과 및 하단 블러 페이드 관리
     let lenis = null;
     
