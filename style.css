@@ -562,3 +562,12 @@ footer .footer-sub {
     font-size: 0.75rem;
     color: #555555;
 }
+
+footer .footer-sub a {
+    color: #888888;
+    transition: color 0.2s ease;
+}
+
+footer .footer-sub a:hover {
+    color: #ffffff;
+}
