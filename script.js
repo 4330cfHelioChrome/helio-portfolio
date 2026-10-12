@@ -178,16 +178,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 4. 🌟 카드 3D 틸트 및 마우스 반사(Sheen) 효과
     const cards = document.querySelectorAll(".project-card, .skill-box, .contact-card");
-
+    
     cards.forEach(card => {
         card.addEventListener("mousemove", (e) => {
+            card.style.transition = "none"; // 💡 실시간 추적을 위해 트랜지션 제거
+            
             const rect = card.getBoundingClientRect();
             const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
             
             card.style.setProperty('--mouse-x', `${x}px`);
             card.style.setProperty('--mouse-y', `${y}px`);
-
+    
             const centerX = rect.width / 2;
             const centerY = rect.height / 2;
             
@@ -196,12 +198,12 @@ document.addEventListener("DOMContentLoaded", () => {
             
             card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-6px)`;
         });
-
+    
         card.addEventListener("mouseleave", () => {
             card.style.transition = "transform 0.5s ease, border-color 0.3s ease, box-shadow 0.3s ease";
             card.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)";
         });
-
+    
         card.addEventListener("mouseenter", () => {
             card.style.transition = "none";
         });
