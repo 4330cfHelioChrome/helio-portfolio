@@ -180,13 +180,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const cards = document.querySelectorAll(".project-card, .skill-box, .contact-card");
     
     cards.forEach(card => {
-        // 💡 애니메이션이 끝난 후 transform 충돌 방지
+        // 💡 애니메이션이 끝난 후 불투명도를 1로 고정하고 애니메이션 속성 해제 (transform 충돌 방지)
         card.addEventListener("animationend", () => {
+            card.style.opacity = "1";
             card.style.animation = "none";
         });
     
         card.addEventListener("mousemove", (e) => {
-            card.style.transition = "none";
+            card.style.transition = "none"; // 실시간 추적을 위해 트랜지션 제거
             
             const rect = card.getBoundingClientRect();
             const x = e.clientX - rect.left;
