@@ -1,6 +1,6 @@
 html {
     scroll-behavior: smooth;
-    scrollbar-gutter: stable; /* 스크롤바 영역을 미리 확보하여 레이아웃 너비 흔들림 방지 */
+    scrollbar-gutter: stable;
 }
 
 /* 전체 초기화 및 폰트 */
@@ -17,7 +17,7 @@ body {
     background-image: 
         linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
         linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-    background-size: 50px 50px; /* 격자 간격 */
+    background-size: 50px 50px;
     color: #f1f1f1;
     line-height: 1.6;
     overflow-x: hidden;
@@ -30,8 +30,8 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    pointer-events: none; /* 마우스 클릭을 방해하지 않음 */
-    z-index: -1; /* 콘텐츠 뒤에 위치 */
+    pointer-events: none;
+    z-index: -1;
 }
 
 /* 🖤 상단 네비게이션바 (미니멀 스타일) */
@@ -390,7 +390,6 @@ nav a:hover, nav a.active {
     transition: transform 0.4s ease;
 }
 
-/* 카드에 마우스가 올라갈 때 이미지 살짝 확대 */
 .project-card:hover .project-thumb {
     transform: scale(1.05);
 }
@@ -434,7 +433,6 @@ nav a:hover, nav a.active {
     line-height: 1.5;
 }
 
-/* 사용 기술 태그 스타일 */
 .project-tags {
     display: flex;
     flex-wrap: wrap;
@@ -462,32 +460,31 @@ nav a:hover, nav a.active {
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
     z-index: 9999;
-    pointer-events: none; /* 마우스 클릭을 방해하지 않음 */
+    pointer-events: none;
     opacity: 0;
     transition: opacity 0.4s ease;
 }
 
-/* 스크롤이 필요하고 맨 아래가 아닐 때 활성화 */
 .scroll-bottom-blur.visible {
     opacity: 1;
 }
 
-/* 🖱️ 모던 스크롤바 디자인 (웹킷 브라우저용 - 크롬, 사파리, 엣지) */
+/* 🖱️ 모던 스크롤바 디자인 */
 ::-webkit-scrollbar {
-    width: 6px; /* 스크롤바 두께를 얇게 설정 */
+    width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-    background: #0a0a0a; /* 배경색과 맞춤 */
+    background: #0a0a0a;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #2a2a2a; /* 스크롤바 색상 */
+    background: #2a2a2a;
     border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #444444; /* 마우스 올렸을 때 색상 */
+    background: #444444;
 }
 
 /* ✨ 통합 애니메이션 및 자동 지연(Delay) 처리 */
@@ -502,7 +499,7 @@ nav a:hover, nav a.active {
     }
 }
 
-/* 애니메이션 대상 요소들 통합 적용 */
+/* 애니메이션 대상 요소들 통합 적용 (footer 포함) */
 .project-card, 
 .skill-box, 
 .contact-card, 
@@ -517,33 +514,34 @@ nav a:hover, nav a.active {
 .page-container h3,
 .page-container p,
 .profile-hero .btn,
-.avatar-container {
+.avatar-container,
+footer {
     opacity: 0;
     animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    animation-delay: calc(var(--i, 0) * 0.1s); /* 자바스크립트가 부여한 순번에 따라 자동 지연 */
+    animation-delay: calc(var(--i, 0) * 0.1s);
 }
 
 /* 모바일 화면에서 헤더 및 네비게이션 가로 초과 방지 */
 @media (max-width: 768px) {
     header {
-        padding: 1rem 1rem; /* 좌우 패딩을 줄여서 기본 여백 확보 */
-        flex-direction: column; /* 로고와 메뉴를 위아래로 배치 */
+        padding: 1rem 1rem;
+        flex-direction: column;
         gap: 12px;
         align-items: center;
     }
 
     nav ul {
-        gap: 15px; /* 메뉴 간격을 좁힘 */
-        flex-wrap: wrap; /* 공간이 부족하면 자연스럽게 줄바꿈 */
+        gap: 15px;
+        flex-wrap: wrap;
         justify-content: center;
     }
 
     nav a {
-        font-size: 0.9rem; /* 모바일에서 글씨 크기를 살짝 줄임 */
+        font-size: 0.9rem;
     }
 }
 
-/* 📜 하단 푸터 (라이선스/저작권) 스타일 */
+/* 📜 하단 푸터 스타일 */
 footer {
     text-align: center;
     padding: 40px 10px;
