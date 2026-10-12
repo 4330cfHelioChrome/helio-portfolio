@@ -180,14 +180,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const cards = document.querySelectorAll(".project-card, .skill-box, .contact-card");
     
     cards.forEach(card => {
-        // 💡 애니메이션이 끝난 후 불투명도를 1로 고정하고 애니메이션 속성 해제 (transform 충돌 방지)
         card.addEventListener("animationend", () => {
             card.style.opacity = "1";
             card.style.animation = "none";
         });
     
         card.addEventListener("mousemove", (e) => {
-            card.style.transition = "none"; // 실시간 추적을 위해 트랜지션 제거
+            card.style.transition = "none";
             
             const rect = card.getBoundingClientRect();
             const x = e.clientX - rect.left;
@@ -258,4 +257,10 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
     });
+
+    // 💡 <footer> 요소에 자동으로 순서(--i) 번호 부여 (콘텐츠가 다 나온 뒤 자연스럽게 나타나도록 지정)
+    const footer = document.querySelector("footer");
+    if (footer) {
+        footer.style.setProperty('--i', 5); 
+    }
 });
