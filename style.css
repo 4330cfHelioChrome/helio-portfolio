@@ -522,3 +522,22 @@ nav a:hover, nav a.active {
     animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     animation-delay: calc(var(--i, 0) * 0.1s); /* 자바스크립트가 부여한 순번에 따라 자동 지연 */
 }
+
+/* 모바일 화면 최적화 (너비 768px 이하) */
+@media (max-width: 768px) {
+    .profile-name {
+        font-size: 1.7rem; /* 모바일에서 이름 크기 조정 */
+        word-break: keep-all; /* 단어 단위로 자연스럽게 줄바꿈 */
+    }
+    
+    .profile-name .username {
+        display: block; /* 유저네임 영역을 아래 줄로 내려서 가로 늘어남 방지 */
+        margin-left: 0;
+        margin-top: 5px;
+        font-size: 1rem;
+    }
+
+    .page-container {
+        padding: 0 15px; /* 모바일 좌우 여백 확보 */
+    }
+}
