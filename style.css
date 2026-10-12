@@ -523,21 +523,22 @@ nav a:hover, nav a.active {
     animation-delay: calc(var(--i, 0) * 0.1s); /* 자바스크립트가 부여한 순번에 따라 자동 지연 */
 }
 
-/* 모바일 화면 최적화 (너비 768px 이하) */
+/* 모바일 화면에서 헤더 및 네비게이션 가로 초과 방지 */
 @media (max-width: 768px) {
-    .profile-name {
-        font-size: 1.7rem; /* 모바일에서 이름 크기 조정 */
-        word-break: keep-all; /* 단어 단위로 자연스럽게 줄바꿈 */
-    }
-    
-    .profile-name .username {
-        display: block; /* 유저네임 영역을 아래 줄로 내려서 가로 늘어남 방지 */
-        margin-left: 0;
-        margin-top: 5px;
-        font-size: 1rem;
+    header {
+        padding: 1rem 1rem; /* 좌우 패딩을 줄여서 기본 여백 확보 */
+        flex-direction: column; /* 로고와 메뉴를 위아래로 배치 */
+        gap: 12px;
+        align-items: center;
     }
 
-    .page-container {
-        padding: 0 15px; /* 모바일 좌우 여백 확보 */
+    nav ul {
+        gap: 15px; /* 메뉴 간격을 좁힘 */
+        flex-wrap: wrap; /* 공간이 부족하면 자연스럽게 줄바꿈 */
+        justify-content: center;
+    }
+
+    nav a {
+        font-size: 0.9rem; /* 모바일에서 글씨 크기를 살짝 줄임 */
     }
 }
