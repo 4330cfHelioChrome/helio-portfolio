@@ -1,2 +1,4 @@
 # helio-portfolio
-HelioChrome's Website
+## HelioChrome's Portfolio Website
+This website contains HelioChrome's profile, his tech stacks, his projects, and contacts, etc.
+
