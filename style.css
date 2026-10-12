@@ -542,3 +542,25 @@ nav a:hover, nav a.active {
         font-size: 0.9rem; /* 모바일에서 글씨 크기를 살짝 줄임 */
     }
 }
+
+/* 📜 하단 푸터 (라이선스/저작권) 스타일 */
+footer {
+    text-align: center;
+    padding: 40px 20px;
+    margin-top: 80px;
+    border-top: 1px solid #222222;
+    background-color: #0a0a0a;
+    color: #777777;
+    font-size: 0.85rem;
+    font-family: monospace;
+    letter-spacing: -0.5px;
+}
+
+footer p {
+    margin-bottom: 5px;
+}
+
+footer .footer-sub {
+    font-size: 0.75rem;
+    color: #555555;
+}
