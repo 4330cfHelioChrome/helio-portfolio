@@ -499,7 +499,7 @@ nav a:hover, nav a.active {
     }
 }
 
-/* 애니메이션 대상 요소들 통합 적용 (footer 포함) */
+/* --- ✨ 스크롤 진입 시 나타나는 페이드인 트랜지션 설정 --- */
 .project-card, 
 .skill-box, 
 .contact-card, 
@@ -517,8 +517,30 @@ nav a:hover, nav a.active {
 .avatar-container,
 footer {
     opacity: 0;
-    animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    animation-delay: calc(var(--i, 0) * 0.1s);
+    transform: translateY(20px);
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: calc(var(--i, 0) * 0.1s);
+}
+
+/* 화면에 들어왔을 때 붙는 .visible 클래스 */
+.project-card.visible, 
+.skill-box.visible, 
+.contact-card.visible, 
+.about-block.visible, 
+.contact-row.visible, 
+.team-member-card.visible,
+.profile-hero h1.visible,
+.profile-hero h2.visible,
+.profile-hero h3.visible,
+.profile-hero p.visible,
+.page-container h2.visible,
+.page-container h3.visible,
+.page-container p.visible,
+.profile-hero .btn.visible,
+.avatar-container.visible,
+footer.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* 모바일 화면에서 헤더 및 네비게이션 가로 초과 방지 */
