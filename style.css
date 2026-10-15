@@ -670,3 +670,48 @@ footer .footer-sub a:hover {
 .timeline-scroll-wrapper::-webkit-scrollbar-thumb:hover {
     background: #444444;
 }
+
+/* --- ✨ 미래/열린 가능성 노드 스타일 --- */
+.future-node {
+    border: 1px dashed #444444; /* 미지의 느낌을 주는 점선 */
+    background: linear-gradient(135deg, #141414, #1a1a1a);
+}
+
+/* 미래 노드의 연결점은 은은한 네온 빛(포인트 컬러)으로 숨쉬는 애니메이션 적용 */
+.future-node::before {
+    background-color: #38ef7d; /* 원하시는 컬러로 변경 가능 (예: 초록빛 생동감) */
+    animation: futurePulse 2s infinite ease-in-out;
+}
+
+/* 빛이 퍼져나가는 애니메이션 */
+@keyframes futurePulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(56, 239, 125, 0.6);
+    }
+    70% {
+        box-shadow: 0 0 0 8px rgba(56, 239, 125, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(56, 239, 125, 0);
+    }
+}
+
+.future-node h4 {
+    color: #38ef7d; /* 제목 색상도 포인트로 강조 */
+}
+
+/* 타임라인 상단 기준선의 오른쪽 끝이 투명하게 사라지도록 처리 */
+.timeline-track {
+    position: relative;
+}
+
+.timeline-track::before {
+    content: '';
+    position: absolute;
+    top: 4px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    /* 오른쪽으로 갈수록 선이 희미해지도록 그라데이션 적용 */
+    background: linear-gradient(to right, #333333 80%, transparent 100%);
+}
