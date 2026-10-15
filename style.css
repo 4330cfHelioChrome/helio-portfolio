@@ -572,13 +572,13 @@ footer .footer-sub a:hover {
     color: #ffffff;
 }
 
-/* --- ⏳ 가로 타임라인 커스텀 스타일 --- */
+/* --- ⏳ 타임라인 스크롤 컨테이너 및 트랙 수정 --- */
 .timeline-scroll-wrapper {
     width: 100%;
     overflow-x: auto;
-    padding-bottom: 15px;
+    overflow-y: visible; /* 세로 방향으로 섬광이 잘리지 않도록 설정 */
+    padding: 15px 0 20px 0; /* 상하단 여백을 주어 그림자/섬광이 잘리지 않게 함 */
     margin-top: 20px;
-    /* 기존 스크롤바 디자인과 통일되도록 적용됨 */
 }
 
 .timeline-track {
@@ -586,7 +586,7 @@ footer .footer-sub a:hover {
     gap: 20px;
     position: relative;
     min-width: max-content;
-    padding-top: 20px; /* 상단 선과 카드 사이 여백 */
+    padding-top: 25px; /* 상단 선과 노드 사이 여백 확보 */
 }
 
 /* 상단에 가로로 지나가는 기준선 */
