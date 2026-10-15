@@ -290,7 +290,7 @@ document.addEventListener("DOMContentLoaded", () => {
         observer.observe(el);
     });
 
-    // 🐙 Vercel 서버리스 함수를 통해 실제 GitHub 통계(총 커밋 수, 레포 수) 가져오기
+    // 🐙 Vercel 서버리스 함수를 통해 실제 GitHub 통계 가져오기
     async function loadRealGitHubStats() {
         try {
             const response = await fetch('/api/github');
@@ -300,17 +300,25 @@ document.addEventListener("DOMContentLoaded", () => {
             
             const commitEl = document.getElementById('commit-count');
             const repoEl = document.getElementById('repo-count');
+            const prEl = document.getElementById('pr-count');
+            const issueEl = document.getElementById('issue-count');
+            const starEl = document.getElementById('star-count');
             
             if (commitEl) commitEl.textContent = data.totalCommits.toLocaleString();
-            if (repoEl) repoEl.textContent = `${data.totalRepos} Repos`;
+            if (repoEl) repoEl.textContent = data.totalRepos.toLocaleString();
+            if (prEl) prEl.textContent = data.totalPRs.toLocaleString();
+            if (issueEl) issueEl.textContent = data.totalIssues.toLocaleString();
+            if (starEl) starEl.textContent = data.totalStars.toLocaleString();
         } catch (error) {
             console.error("GitHub 통계 로드 실패:", error);
-            const commitEl = document.getElementById('commit-count');
-            const repoEl = document.getElementById('repo-count');
-            if (commitEl) commitEl.textContent = "-";
-            if (repoEl) repoEl.textContent = "-";
+            ['commit-count', 'repo-count', 'pr-count', 'issue-count', 'star-count'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.textContent = "-";
+            });
         }
     }
+
+    loadRealGitHubStats();
 
     loadRealGitHubStats();
 });
