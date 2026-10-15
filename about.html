@@ -50,35 +50,50 @@
 
                         <!-- Total Commits 카드 -->
                         <div class="project-card skill-box github-stat-card" style="padding: 20px; text-align: center;">
-                            <div class="stat-icon" style="font-size: 1.8rem; margin-bottom: 8px;">💻</div>
+                            <div class="stat-icon" style="margin-bottom: 8px;">
+                                <!-- Commit 아이콘 -->
+                                <svg height="22" width="22" viewBox="0 0 16 16" fill="#888888"><path d="M11.93 8.75a4.002 4.002 0 0 1-7.86 0H.75a.75.75 0 0 1 0-1.5h3.32a4.002 4.002 0 0 1 7.86 0h3.32a.75.75 0 0 1 0 1.5Zm-3.93-2.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5Z"></path></svg>
+                            </div>
                             <h4 style="color: #fff; font-size: 0.9rem; margin-bottom: 6px;">Commits</h4>
                             <p id="commit-count" style="color: #38ef7d; font-size: 1.2rem; font-weight: bold; font-family: monospace; margin: 0;">Loading...</p>
                         </div>
 
                         <!-- Public Repos 카드 -->
                         <div class="project-card skill-box github-stat-card" style="padding: 20px; text-align: center;">
-                            <div class="stat-icon" style="font-size: 1.8rem; margin-bottom: 8px;">📦</div>
+                            <div class="stat-icon" style="margin-bottom: 8px;">
+                                <!-- Repo 아이콘 -->
+                                <svg height="22" width="22" viewBox="0 0 16 16" fill="#888888"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.8.4l-.9 1.2-.9-1.2a1 1 0 0 0-.8-.4H2.25a.75.75 0 0 1-.75-.75V2.5ZM4.5 1.5c-.55 0-1 .45-1 1v8.7l.86-.34a2.5 2.5 0 0 1 1.88 0l.86.34V1.5h-2.6Z"></path></svg>
+                            </div>
                             <h4 style="color: #fff; font-size: 0.9rem; margin-bottom: 6px;">Repositories</h4>
                             <p id="repo-count" style="color: #fff; font-size: 1.2rem; font-weight: bold; font-family: monospace; margin: 0;">Loading...</p>
                         </div>
 
                         <!-- Pull Requests 카드 -->
                         <div class="project-card skill-box github-stat-card" style="padding: 20px; text-align: center;">
-                            <div class="stat-icon" style="font-size: 1.8rem; margin-bottom: 8px;">🔀</div>
+                            <div class="stat-icon" style="margin-bottom: 8px;">
+                                <!-- Pull Request 아이콘 (원 두 개와 가지 형태) -->
+                                <svg height="22" width="22" viewBox="0 0 16 16" fill="#888888"><path d="M1.5 3.25a2.25 2.25 0 1 1 3 2.122v5.256a2.251 2.251 0 1 1-1.5 0V5.372A2.25 2.25 0 0 1 1.5 3.25Zm5.678-.874a.75.75 0 0 1 .547.228l2.969 2.97a.75.75 0 0 1 0 1.06l-2.969 2.97a.751.751 0 0 1-1.275-.53V3.75a.75.75 0 0 1 .318-.622.749.749 0 0 1 .414-.124ZM3.75 4a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Zm0 8.5a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Zm8.25-4.25a2.25 2.25 0 1 1 1.5 2.122V12.5a.75.75 0 0 1-1.5 0V9.872a2.251 2.251 0 0 1 0-2.122ZM13.5 11.25a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z"></path></svg>
+                            </div>
                             <h4 style="color: #fff; font-size: 0.9rem; margin-bottom: 6px;">Pull Requests</h4>
                             <p id="pr-count" style="color: #fff; font-size: 1.2rem; font-weight: bold; font-family: monospace; margin: 0;">Loading...</p>
                         </div>
 
                         <!-- Issues 카드 -->
                         <div class="project-card skill-box github-stat-card" style="padding: 20px; text-align: center;">
-                            <div class="stat-icon" style="font-size: 1.8rem; margin-bottom: 8px;">🎯</div>
+                            <div class="stat-icon" style="margin-bottom: 8px;">
+                                <!-- Issue 아이콘 (원 안에 점) -->
+                                <svg height="22" width="22" viewBox="0 0 16 16" fill="#888888"><path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"></path><path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0ZM1.5 8a6.5 6.5 0 1 0 13 0 6.5 6.5 0 0 0-13 0Z"></path></svg>
+                            </div>
                             <h4 style="color: #fff; font-size: 0.9rem; margin-bottom: 6px;">Issues</h4>
                             <p id="issue-count" style="color: #fff; font-size: 1.2rem; font-weight: bold; font-family: monospace; margin: 0;">Loading...</p>
                         </div>
 
                         <!-- Stars 카드 -->
                         <div class="project-card skill-box github-stat-card" style="padding: 20px; text-align: center;">
-                            <div class="stat-icon" style="font-size: 1.8rem; margin-bottom: 8px;">⭐</div>
+                            <div class="stat-icon" style="margin-bottom: 8px;">
+                                <!-- Star 아이콘 -->
+                                <svg height="22" width="22" viewBox="0 0 16 16" fill="#f1c40f"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"></path></svg>
+                            </div>
                             <h4 style="color: #fff; font-size: 0.9rem; margin-bottom: 6px;">Stars</h4>
                             <p id="star-count" style="color: #f1c40f; font-size: 1.2rem; font-weight: bold; font-family: monospace; margin: 0;">Loading...</p>
                         </div>
