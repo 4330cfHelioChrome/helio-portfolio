@@ -54,7 +54,6 @@ document.addEventListener("DOMContentLoaded", () => {
             particlesArray[i].update();
             particlesArray[i].draw();
     
-            // 파티클 사이 거리가 가까우면 옅은 점선으로 연결
             for (let j = i + 1; j < particlesArray.length; j++) {
                 const dx = particlesArray[i].x - particlesArray[j].x;
                 const dy = particlesArray[i].y - particlesArray[j].y;
@@ -65,14 +64,12 @@ document.addEventListener("DOMContentLoaded", () => {
                     ctx.lineWidth = 0.5;
                     ctx.beginPath();
                     
-                    // ✨ 점선 효과 적용 ([선 길이, 간격 길이])
                     ctx.setLineDash([2, 4]); 
                     
                     ctx.moveTo(particlesArray[i].x, particlesArray[i].y);
                     ctx.lineTo(particlesArray[j].x, particlesArray[j].y);
                     ctx.stroke();
                     
-                    // ✨ 다른 요소에 점선이 영향을 주지 않도록 초기화
                     ctx.setLineDash([]); 
                 }
             }
@@ -101,7 +98,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // 3. 📊 기술 스택 기간 계산 및 바(Bar) 그래프 렌더링
     const skillBoxes = document.querySelectorAll(".skill-box");
 
-    // Tech Stack 카드들을 '오래된 날짜순(오름차순)'으로 DOM에서 정렬
     const skillContainer = document.querySelector(".about-block .project-grid");
     if (skillContainer) {
         const boxesArray = Array.from(skillContainer.querySelectorAll(".skill-box"));
@@ -113,7 +109,6 @@ document.addEventListener("DOMContentLoaded", () => {
         boxesArray.forEach(box => skillContainer.appendChild(box));
     }
     
-    // 현재 기준 날짜 (2026년 10월)
     const currentDate = new Date(2026, 9); 
 
     let skillData = [];
@@ -180,11 +175,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const cards = document.querySelectorAll(".project-card, .skill-box, .contact-card");
     
     cards.forEach(card => {
-        card.addEventListener("animationend", () => {
-            card.style.opacity = "1";
-            card.style.animation = "none";
-        });
-    
         card.addEventListener("mousemove", (e) => {
             card.style.transition = "none";
             
@@ -214,7 +204,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
     
-    // 5. 🛞 Lenis 관성 부드러운 스크롤 효과 및 하단 블러 페이드 관리
+    // 5. 🛞 Lenis 관성 부드러운 스크롤 효과
     let lenis = null;
     
     if (typeof Lenis !== 'undefined') {
@@ -229,11 +219,9 @@ document.addEventListener("DOMContentLoaded", () => {
             requestAnimationFrame(raf);
         }
         requestAnimationFrame(raf);
-    } else {
-        console.warn("Lenis 라이브러리를 불러오지 못했습니다. 기본 스크롤로 동작합니다.");
     }
 
-    // 6. 📌 페이지 내 모든 주요 요소들에 자동으로 순서(--i) 번호 부여
+    // 6. 📌 페이지 내 모든 주요 요소들에 순서(--i) 번호 부여
     const profileHero = document.querySelector(".profile-hero");
     if (profileHero) {
         Array.from(profileHero.children).forEach((child, index) => {
@@ -258,9 +246,47 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // 💡 <footer> 요소에 자동으로 순서(--i) 번호 부여 (콘텐츠가 다 나온 뒤 자연스럽게 나타나도록 지정)
     const footer = document.querySelector("footer");
     if (footer) {
         footer.style.setProperty('--i', 5); 
     }
+
+    // 7. ✨ 스크롤이 해당 영역에 도달했을 때만 애니메이션이 실행되도록 하는 Intersection Observer 적용
+    const animatedElements = document.querySelectorAll(`
+        .project-card, 
+        .skill-box, 
+        .contact-card, 
+        .about-block, 
+        .contact-row, 
+        .team-member-card,
+        .profile-hero h1,
+        .profile-hero h2,
+        .profile-hero h3,
+        .profile-hero p,
+        .page-container h2,
+        .page-container h3,
+        .page-container p,
+        .profile-hero .btn,
+        .avatar-container,
+        footer
+    `);
+
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px 0px -50px 0px', // 화면 하단에 조금 올라왔을 때 트리거
+        threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+                observer.unobserve(entry.target); // 한 번 나타난 요소는 관찰 종료
+            }
+        });
+    }, observerOptions);
+
+    animatedElements.forEach(el => {
+        observer.observe(el);
+    });
 });
