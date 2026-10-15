@@ -289,4 +289,26 @@ document.addEventListener("DOMContentLoaded", () => {
     animatedElements.forEach(el => {
         observer.observe(el);
     });
+
+    // 🐙 GitHub 공개 API로 데이터 가져오기
+    async function loadGitHubStats() {
+        try {
+            const response = await fetch('https://api.github.com/users/HelioChrome');
+            if (!response.ok) throw new Error('GitHub API 호출 실패');
+            
+            const data = await response.json();
+            
+            // 공개 리포지토리 개수 텍스트에 반영
+            const repoEl = document.getElementById('repo-count');
+            if (repoEl) {
+                repoEl.textContent = `${data.public_repos} repos`;
+            }
+        } catch (error) {
+            console.error("GitHub 데이터를 불러오지 못했습니다:", error);
+            const repoEl = document.getElementById('repo-count');
+            if (repoEl) repoEl.textContent = "Error";
+        }
+    }
+    
+    loadGitHubStats();
 });
