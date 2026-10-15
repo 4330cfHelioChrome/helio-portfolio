@@ -571,3 +571,83 @@ footer .footer-sub a {
 footer .footer-sub a:hover {
     color: #ffffff;
 }
+
+/* --- ⏳ 가로 타임라인 커스텀 스타일 --- */
+.timeline-scroll-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 15px;
+    margin-top: 20px;
+    /* 기존 스크롤바 디자인과 통일되도록 적용됨 */
+}
+
+.timeline-track {
+    display: flex;
+    gap: 20px;
+    position: relative;
+    min-width: max-content;
+    padding-top: 20px; /* 상단 선과 카드 사이 여백 */
+}
+
+/* 상단에 가로로 지나가는 기준선 */
+.timeline-track::before {
+    content: '';
+    position: absolute;
+    top: 4px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: #333333;
+}
+
+/* 개별 타임라인 카드 박스 */
+.timeline-node {
+    width: 240px;
+    background-color: #141414;
+    border: 1px solid #222222;
+    padding: 20px;
+    border-radius: 6px;
+    position: relative;
+    flex-shrink: 0;
+    transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+/* 각 카드가 상단 선과 연결되는 작은 점(포인트) */
+.timeline-node::before {
+    content: '';
+    position: absolute;
+    top: -20px; /* 선 위치(top: 4px)와 일치시키기 위한 조정 */
+    left: 20px;
+    width: 8px;
+    height: 8px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+}
+
+.timeline-node:hover {
+    border-color: #555555;
+    transform: translateY(-3px);
+}
+
+.timeline-date {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-family: monospace;
+    color: #888888;
+    margin-bottom: 8px;
+}
+
+.timeline-node h4 {
+    font-size: 1.05rem;
+    color: #ffffff;
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+.timeline-node p {
+    font-size: 0.9rem;
+    color: #a1a1a1;
+    margin: 0;
+    line-height: 1.5;
+}
