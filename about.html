@@ -43,15 +43,46 @@
                     <p>I am interested in exploring the essence of web technology and implementing aesthetically pleasing yet clean interfaces. Through continuous learning, I am expanding my development capabilities to achieve a high level of perfection.</p>
                 </div>
 
+                <!-- 🐙 Github Stats 섹션 -->
                 <div class="about-block">
                     <h3>Github Stats</h3>
-                    <div class="project-grid" style="grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 12px;">
+                    <div class="project-grid" style="grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px;">
 
+                        <!-- Total Commits 카드 -->
+                        <div class="project-card skill-box github-stat-card" style="padding: 20px; text-align: center;">
+                            <div class="stat-icon" style="font-size: 1.8rem; margin-bottom: 8px;">💻</div>
+                            <h4 style="color: #fff; font-size: 0.9rem; margin-bottom: 6px;">Commits</h4>
+                            <p id="commit-count" style="color: #38ef7d; font-size: 1.2rem; font-weight: bold; font-family: monospace; margin: 0;">Loading...</p>
+                        </div>
+
+                        <!-- Public Repos 카드 -->
                         <div class="project-card skill-box github-stat-card" style="padding: 20px; text-align: center;">
                             <div class="stat-icon" style="font-size: 1.8rem; margin-bottom: 8px;">📦</div>
-                            <h4 style="color: #fff; font-size: 0.95rem; margin-bottom: 6px;">Public Repos</h4>
-                            <p id="repo-count" style="color: #38ef7d; font-size: 1.3rem; font-weight: bold; font-family: monospace; margin: 0;">Loading...</p>
+                            <h4 style="color: #fff; font-size: 0.9rem; margin-bottom: 6px;">Repositories</h4>
+                            <p id="repo-count" style="color: #fff; font-size: 1.2rem; font-weight: bold; font-family: monospace; margin: 0;">Loading...</p>
                         </div>
+
+                        <!-- Pull Requests 카드 -->
+                        <div class="project-card skill-box github-stat-card" style="padding: 20px; text-align: center;">
+                            <div class="stat-icon" style="font-size: 1.8rem; margin-bottom: 8px;">🔀</div>
+                            <h4 style="color: #fff; font-size: 0.9rem; margin-bottom: 6px;">Pull Requests</h4>
+                            <p id="pr-count" style="color: #fff; font-size: 1.2rem; font-weight: bold; font-family: monospace; margin: 0;">Loading...</p>
+                        </div>
+
+                        <!-- Issues 카드 -->
+                        <div class="project-card skill-box github-stat-card" style="padding: 20px; text-align: center;">
+                            <div class="stat-icon" style="font-size: 1.8rem; margin-bottom: 8px;">🎯</div>
+                            <h4 style="color: #fff; font-size: 0.9rem; margin-bottom: 6px;">Issues</h4>
+                            <p id="issue-count" style="color: #fff; font-size: 1.2rem; font-weight: bold; font-family: monospace; margin: 0;">Loading...</p>
+                        </div>
+
+                        <!-- Stars 카드 -->
+                        <div class="project-card skill-box github-stat-card" style="padding: 20px; text-align: center;">
+                            <div class="stat-icon" style="font-size: 1.8rem; margin-bottom: 8px;">⭐</div>
+                            <h4 style="color: #fff; font-size: 0.9rem; margin-bottom: 6px;">Stars</h4>
+                            <p id="star-count" style="color: #f1c40f; font-size: 1.2rem; font-weight: bold; font-family: monospace; margin: 0;">Loading...</p>
+                        </div>
+
                     </div>
                 </div>
 
