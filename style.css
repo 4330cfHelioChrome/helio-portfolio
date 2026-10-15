@@ -572,13 +572,32 @@ footer .footer-sub a:hover {
     color: #ffffff;
 }
 
-/* --- ⏳ 가로 타임라인 고정 스타일 --- */
+/* --- ⏳ 가로 타임라인 완벽 정렬 스타일 --- */
 .timeline-scroll-wrapper {
     width: 100%;
     overflow-x: auto;
     overflow-y: visible; /* 네온 섬광이 잘리지 않도록 설정 */
     padding: 15px 0 20px 0;
     margin-top: 20px;
+}
+
+/* 타임라인 전용 얇은 스크롤바 설정 */
+.timeline-scroll-wrapper::-webkit-scrollbar {
+    height: 6px;
+}
+
+.timeline-scroll-wrapper::-webkit-scrollbar-track {
+    background: #0a0a0a;
+    border-radius: 3px;
+}
+
+.timeline-scroll-wrapper::-webkit-scrollbar-thumb {
+    background: #2a2a2a;
+    border-radius: 3px;
+}
+
+.timeline-scroll-wrapper::-webkit-scrollbar-thumb:hover {
+    background: #444444;
 }
 
 .timeline-track {
@@ -609,25 +628,23 @@ footer .footer-sub a:hover {
     border-radius: 6px;
     position: relative;
     flex-shrink: 0;
-    /* 카드가 호버될 때 테두리와 그림자만 변하고, 위치 이동(translateY)은 제거하여 점이 흔들리지 않게 함 */
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* 각 카드가 상단 선과 연결되는 고정된 점(포인트) */
+/* 각 카드가 상단 선과 연결되는 고정된 점(포인트) - 중앙 정렬 보정 완료 */
 .timeline-node::before {
     content: '';
     position: absolute;
-    top: -20px; /* 선(top: 10px) 위치와 정확히 만나도록 조정 */
+    top: -24px; /* 선(top: 10px)과 8px 크기 점의 중심을 정확히 일치시키도록 수정 */
     left: 20px;
     width: 8px;
     height: 8px;
     background-color: #ffffff;
     border-radius: 50%;
     box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
-    z-index: 2; /* 선보다 위에 보이도록 설정 */
+    z-index: 2;
 }
 
-/* 마우스를 올려도 카드가 위로 움직이지 않고 제자리에 고정되도록 변경 */
 .timeline-node:hover {
     border-color: #555555;
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.7);
