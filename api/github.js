@@ -1,6 +1,6 @@
 export default async function handler(req, res) {
     const token = process.env.GITHUB_TOKEN;
-    const username = "4330cfHelioChrome"; // 본인 깃허브 아이디
+    const username = "HelioChrome"; // 본인 깃허브 아이디
 
     if (!token) {
         return res.status(500).json({ error: "GitHub token is not configured" });
@@ -16,6 +16,15 @@ export default async function handler(req, res) {
                     contributionCalendar {
                         totalContributions
                     }
+                }
+                pullRequests {
+                    totalCount
+                }
+                issues {
+                    totalCount
+                }
+                starredRepositories {
+                    totalCount
                 }
             }
         }
@@ -38,12 +47,12 @@ export default async function handler(req, res) {
         }
 
         const user = data.user;
-        const totalRepos = user.repositories.totalCount;
-        const totalCommits = user.contributionsCollection.contributionCalendar.totalContributions;
-
         return res.status(200).json({
-            totalRepos,
-            totalCommits
+            totalRepos: user.repositories.totalCount,
+            totalCommits: user.contributionsCollection.contributionCalendar.totalContributions,
+            totalPRs: user.pullRequests.totalCount,
+            totalIssues: user.issues.totalCount,
+            totalStars: user.starredRepositories.totalCount
         });
     } catch (error) {
         return res.status(500).json({ error: error.message });
