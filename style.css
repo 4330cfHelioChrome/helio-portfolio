@@ -572,12 +572,12 @@ footer .footer-sub a:hover {
     color: #ffffff;
 }
 
-/* --- ⏳ 타임라인 스크롤 컨테이너 및 트랙 수정 --- */
+/* --- ⏳ 가로 타임라인 고정 스타일 --- */
 .timeline-scroll-wrapper {
     width: 100%;
     overflow-x: auto;
-    overflow-y: visible; /* 세로 방향으로 섬광이 잘리지 않도록 설정 */
-    padding: 15px 0 20px 0; /* 상하단 여백을 주어 그림자/섬광이 잘리지 않게 함 */
+    overflow-y: visible; /* 네온 섬광이 잘리지 않도록 설정 */
+    padding: 15px 0 20px 0;
     margin-top: 20px;
 }
 
@@ -586,18 +586,18 @@ footer .footer-sub a:hover {
     gap: 20px;
     position: relative;
     min-width: max-content;
-    padding-top: 25px; /* 상단 선과 노드 사이 여백 확보 */
+    padding-top: 30px; /* 상단 선과 카드 사이 여백 확보 */
 }
 
-/* 상단에 가로로 지나가는 기준선 */
+/* 상단에 가로로 지나가는 기준선 (오른쪽으로 갈수록 희미해짐) */
 .timeline-track::before {
     content: '';
     position: absolute;
-    top: 4px;
+    top: 10px; /* 선의 위치 고정 */
     left: 0;
     right: 0;
     height: 2px;
-    background-color: #333333;
+    background: linear-gradient(to right, #333333 80%, transparent 100%);
 }
 
 /* 개별 타임라인 카드 박스 */
@@ -609,25 +609,28 @@ footer .footer-sub a:hover {
     border-radius: 6px;
     position: relative;
     flex-shrink: 0;
-    transition: border-color 0.3s ease, transform 0.3s ease;
+    /* 카드가 호버될 때 테두리와 그림자만 변하고, 위치 이동(translateY)은 제거하여 점이 흔들리지 않게 함 */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* 각 카드가 상단 선과 연결되는 작은 점(포인트) */
+/* 각 카드가 상단 선과 연결되는 고정된 점(포인트) */
 .timeline-node::before {
     content: '';
     position: absolute;
-    top: -20px; /* 선 위치(top: 4px)와 일치시키기 위한 조정 */
+    top: -20px; /* 선(top: 10px) 위치와 정확히 만나도록 조정 */
     left: 20px;
     width: 8px;
     height: 8px;
     background-color: #ffffff;
     border-radius: 50%;
     box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+    z-index: 2; /* 선보다 위에 보이도록 설정 */
 }
 
+/* 마우스를 올려도 카드가 위로 움직이지 않고 제자리에 고정되도록 변경 */
 .timeline-node:hover {
     border-color: #555555;
-    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.7);
 }
 
 .timeline-date {
@@ -652,38 +655,17 @@ footer .footer-sub a:hover {
     line-height: 1.5;
 }
 
-/* --- ⏳ 타임라인 전용 가로 스크롤바 얇게 조절 --- */
-.timeline-scroll-wrapper::-webkit-scrollbar {
-    height: 6px; /* 가로 스크롤바의 두께 */
-}
-
-.timeline-scroll-wrapper::-webkit-scrollbar-track {
-    background: #0a0a0a;
-    border-radius: 3px;
-}
-
-.timeline-scroll-wrapper::-webkit-scrollbar-thumb {
-    background: #2a2a2a;
-    border-radius: 3px;
-}
-
-.timeline-scroll-wrapper::-webkit-scrollbar-thumb:hover {
-    background: #444444;
-}
-
 /* --- ✨ 미래/열린 가능성 노드 스타일 --- */
 .future-node {
-    border: 1px dashed #444444; /* 미지의 느낌을 주는 점선 */
+    border: 1px dashed #444444;
     background: linear-gradient(135deg, #141414, #1a1a1a);
 }
 
-/* 미래 노드의 연결점은 은은한 네온 빛(포인트 컬러)으로 숨쉬는 애니메이션 적용 */
 .future-node::before {
-    background-color: #38ef7d; /* 원하시는 컬러로 변경 가능 (예: 초록빛 생동감) */
+    background-color: #38ef7d;
     animation: futurePulse 2s infinite ease-in-out;
 }
 
-/* 빛이 퍼져나가는 애니메이션 */
 @keyframes futurePulse {
     0% {
         box-shadow: 0 0 0 0 rgba(56, 239, 125, 0.6);
@@ -697,21 +679,5 @@ footer .footer-sub a:hover {
 }
 
 .future-node h4 {
-    color: #38ef7d; /* 제목 색상도 포인트로 강조 */
-}
-
-/* 타임라인 상단 기준선의 오른쪽 끝이 투명하게 사라지도록 처리 */
-.timeline-track {
-    position: relative;
-}
-
-.timeline-track::before {
-    content: '';
-    position: absolute;
-    top: 4px;
-    left: 0;
-    right: 0;
-    height: 2px;
-    /* 오른쪽으로 갈수록 선이 희미해지도록 그라데이션 적용 */
-    background: linear-gradient(to right, #333333 80%, transparent 100%);
+    color: #38ef7d;
 }
