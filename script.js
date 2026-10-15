@@ -273,7 +273,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const observerOptions = {
         root: null,
-        rootMargin: '0px 0px -50px 0px', // 화면 하단에 조금 올라왔을 때 트리거
+        rootMargin: '0px 0px -50px 0px', 
         threshold: 0.1
     };
 
@@ -281,7 +281,7 @@ document.addEventListener("DOMContentLoaded", () => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add("visible");
-                observer.unobserve(entry.target); // 한 번 나타난 요소는 관찰 종료
+                observer.unobserve(entry.target); 
             }
         });
     }, observerOptions);
@@ -290,25 +290,27 @@ document.addEventListener("DOMContentLoaded", () => {
         observer.observe(el);
     });
 
-    // 🐙 GitHub 공개 API로 데이터 가져오기
-    async function loadGitHubStats() {
+    // 🐙 Vercel 서버리스 함수를 통해 실제 GitHub 통계(총 커밋 수, 레포 수) 가져오기
+    async function loadRealGitHubStats() {
         try {
-            const response = await fetch('https://api.github.com/users/HelioChrome');
-            if (!response.ok) throw new Error('GitHub API 호출 실패');
+            const response = await fetch('/api/github');
+            if (!response.ok) throw new Error('API 호출 실패');
             
             const data = await response.json();
             
-            // 공개 리포지토리 개수 텍스트에 반영
+            const commitEl = document.getElementById('commit-count');
             const repoEl = document.getElementById('repo-count');
-            if (repoEl) {
-                repoEl.textContent = `${data.public_repos} repos`;
-            }
+            
+            if (commitEl) commitEl.textContent = data.totalCommits.toLocaleString();
+            if (repoEl) repoEl.textContent = `${data.totalRepos} Repos`;
         } catch (error) {
-            console.error("GitHub 데이터를 불러오지 못했습니다:", error);
+            console.error("GitHub 통계 로드 실패:", error);
+            const commitEl = document.getElementById('commit-count');
             const repoEl = document.getElementById('repo-count');
-            if (repoEl) repoEl.textContent = "Error";
+            if (commitEl) commitEl.textContent = "-";
+            if (repoEl) repoEl.textContent = "-";
         }
     }
-    
-    loadGitHubStats();
+
+    loadRealGitHubStats();
 });
