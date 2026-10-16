@@ -40,13 +40,19 @@ export default async function handler(req, res) {
             body: JSON.stringify({ query, variables: { username } })
         });
 
-        const data = await response.json();
+        const result = await response.json();
         
-        if (data.errors) {
-            return res.status(400).json({ error: data.errors[0].message });
+        if (result.errors) {
+            return res.status(400).json({ error: result.errors[0].message });
         }
 
-        const user = data.user;
+        // 수정 포인트: result.data.user로 올바르게 접근
+        const user = result.data.user;
+        
+        if (!user) {
+            return res.status(404).json({ error: "GitHub user not found" });
+        }
+
         return res.status(200).json({
             totalRepos: user.repositories.totalCount,
             totalCommits: user.contributionsCollection.contributionCalendar.totalContributions,
