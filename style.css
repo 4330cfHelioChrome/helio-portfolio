@@ -567,13 +567,14 @@ footer.visible {
 footer {
     text-align: center;
     padding: 40px 10px;
-    margin-top: 80px;
+    margin-top: auto;
     border-top: 1px solid #222222;
     background-color: #0a0a0a;
     color: #777777;
     font-size: 0.85rem;
     font-family: Segoe UI;
     letter-spacing: -0.5px;
+    width: 100%;
 }
 
 footer p {
