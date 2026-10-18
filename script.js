@@ -97,14 +97,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 3. 📊 기술 스택 기간 계산 및 바(Bar) 그래프 렌더링
     const skillBoxes = document.querySelectorAll(".skill-box");
-
-    const skillContainer = document.querySelector(".about-block .project-grid");
+    
+    // 변경: 첫 번째 그리드가 아닌 Tech Stack 전용 ID를 타겟팅
+    const skillContainer = document.getElementById("tech-stack-grid");
     if (skillContainer) {
         const boxesArray = Array.from(skillContainer.querySelectorAll(".skill-box"));
         boxesArray.sort((a, b) => {
             const dateA = a.getAttribute("data-start") || "9999-99";
             const dateB = b.getAttribute("data-start") || "9999-99";
-            return dateA.localeCompare(dateB);
+            return dateA.localeCompare(dateB); // 오래된 날짜(예: 2022-08)가 앞으로 정렬됨
         });
         boxesArray.forEach(box => skillContainer.appendChild(box));
     }
