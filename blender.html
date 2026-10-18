@@ -13,38 +13,6 @@
 
     <link rel="icon" type="image/png" href="images/logo.png">
     <script defer src="/_vercel/insights/script.js"></script>
-    
-    <!-- 뒤로 가기 버튼 전용 스타일 -->
-    <style>
-        .sub-header {
-            background-color: rgba(10, 10, 10, 0.85);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid #222222;
-            padding: 1.2rem 2rem;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-        }
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            color: #888888;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: color 0.2s ease, transform 0.2s ease;
-        }
-        .back-link:hover {
-            color: #ffffff;
-            transform: translateX(-3px);
-        }
-        .back-arrow {
-            font-size: 1.1rem;
-        }
-    </style>
 </head>
 <body>
     <!-- 상단 뒤로 가기 바 -->
@@ -62,6 +30,8 @@
             <!-- 3D 렌더 이미지 카드 그리드 영역 -->
             <div class="project-grid">
 
+                <!-- 여러 이미지를 넘겨볼 수 있는 슬라이더 카드 예시 -->
+                <!-- 단일 이미지 카드 -->
                 <div class="project-card">
                     <div class="project-img-container">
                         <img src="blender_renders/Egg.png" alt="Egg." class="project-thumb">
@@ -90,7 +60,7 @@
                             <span class="project-private" style="font-size: 0.85rem; color: #777777; font-family: monospace; font-weight: 600;">RENDER</span>
                         </div>
                         <h3>A Chocolate Ice Cream with Sprinkles</h3>
-                        <p>Looks tasty!</p>
+                        <p>Wanna try it?</p>
                         <div class="project-tags">
                             <span>Blender</span>
                             <span>Eevee</span>
@@ -108,7 +78,7 @@
                             <span class="project-private" style="font-size: 0.85rem; color: #777777; font-family: monospace; font-weight: 600;">RENDER</span>
                         </div>
                         <h3>A 500-won Coin</h3>
-                        <p>A coin that you can see it anywhere in Korea.</p>
+                        <p>You can see it anywhere in Korea.</p>
                         <div class="project-tags">
                             <span>Blender</span>
                             <span>Eevee</span>
@@ -118,7 +88,18 @@
 
                 <div class="project-card">
                     <div class="project-img-container">
-                        <img src="blender_renders/Donut_and_coffee.png" alt="A Donut and a Cup of Coffee" class="project-thumb">
+                        <div class="slider-container">
+                            <div class="slider-track">
+                                <img src="blender_renders/Donut_and_coffee.png" alt="Donut and Coffee 1" class="project-thumb">
+                                <img src="blender_renders/Dount_and_coffee2.png" alt="Donut and Coffee 2" class="project-thumb">
+                            </div>
+                            <button class="slider-btn prev">&#10094;</button>
+                            <button class="slider-btn next">&#10095;</button>
+                            <div class="slider-dots">
+                                <span class="slider-dot active"></span>
+                                <span class="slider-dot"></span>
+                            </div>
+                        </div>
                     </div>
                     <div class="project-content">
                         <div class="project-top">
@@ -144,7 +125,7 @@
                             <span class="project-private" style="font-size: 0.85rem; color: #777777; font-family: monospace; font-weight: 600;">RENDER</span>
                         </div>
                         <h3>Nongdamgom</h3>
-                        <p>A cute gray bear with a little yellow duck on its head, standing in a green field.</p>
+                        <p>A toon-style cute gray bear with a yellow duck on top.</p>
                         <div class="project-tags">
                             <span>Blender</span>
                             <span>Eevee</span>
@@ -163,6 +144,7 @@
         <p class="footer-sub">Tech stack icons sourced from <a href="https://dashboardicons.com/" target="_blank">Dashboard Icons</a>.</p>
     </footer>
 
+    <!-- 자바스크립트 파일 연결 -->
     <script src="script.js"></script>
 </body>
 </html>
