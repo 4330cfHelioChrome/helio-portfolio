@@ -322,4 +322,66 @@ document.addEventListener("DOMContentLoaded", () => {
     loadRealGitHubStats();
 
     loadRealGitHubStats();
+
+    // --- 이미지 슬라이더 동작 로직 ---
+    document.querySelectorAll('.slider-container').forEach(slider => {
+        const track = slider.querySelector('.slider-track');
+        if (!track) return;
+        const slides = track.querySelectorAll('img');
+        const prevBtn = slider.querySelector('.slider-btn.prev');
+        const nextBtn = slider.querySelector('.slider-btn.next');
+        const dotsContainer = slider.querySelector('.slider-dots');
+        
+        let currentIndex = 0;
+        const totalSlides = slides.length;
+    
+        // 이미지가 1개 이하면 버튼과 점 숨기기
+        if (totalSlides <= 1) {
+            if (prevBtn) prevBtn.style.display = 'none';
+            if (nextBtn) nextBtn.style.display = 'none';
+            if (dotsContainer) dotsContainer.style.display = 'none';
+            return;
+        }
+    
+        // 인디케이터 점 생성
+        if (dotsContainer) {
+            dotsContainer.innerHTML = '';
+            for (let i = 0; i < totalSlides; i++) {
+                const dot = document.createElement('span');
+                dot.classList.add('slider-dot');
+                if (i === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => goToSlide(i));
+                dotsContainer.appendChild(dot);
+            }
+        }
+        const dots = dotsContainer ? dotsContainer.querySelectorAll('.slider-dot') : [];
+    
+        function updateSlide() {
+            track.style.transform = `translateX(-${currentIndex * 100}%)`;
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentIndex);
+            });
+        }
+    
+        function goToSlide(index) {
+            currentIndex = index;
+            updateSlide();
+        }
+    
+        if (nextBtn) {
+            nextBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                currentIndex = (currentIndex + 1) % totalSlides;
+                updateSlide();
+            });
+        }
+    
+        if (prevBtn) {
+            prevBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+                updateSlide();
+            });
+        }
+    });
 });
