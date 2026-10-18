@@ -110,6 +110,8 @@ nav a:hover, nav a.active {
 
 /* 📦 페이지 컨테이너 */
 .page-container {
+    flex: 1; /* 이 부분이 컨텐츠가 짧을 때 푸터를 아래로 밀어줍니다 */
+    width: 100%;
     max-width: 800px;
     margin: 60px auto;
     padding: 0 20px;
@@ -563,16 +565,16 @@ footer.visible {
     }
 }
 
-/* 📜 하단 푸터 스타일 */
+/* 4. 푸터 설정 */
 footer {
     text-align: center;
     padding: 40px 10px;
-    margin-top: auto;
+    margin-top: auto; /* 남은 공간 위쪽을 자동으로 밀어냄 */
     border-top: 1px solid #222222;
     background-color: #0a0a0a;
     color: #777777;
     font-size: 0.85rem;
-    font-family: Segoe UI;
+    font-family: 'Segoe UI', sans-serif;
     letter-spacing: -0.5px;
     width: 100%;
 }
