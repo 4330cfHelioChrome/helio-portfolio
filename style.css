@@ -264,7 +264,6 @@ nav a:hover, nav a.active {
     transform: translateY(-2px);
 }
 
-/* 로고 이미지 스타일 */
 .logo a {
     display: flex;
     align-items: center;
@@ -272,11 +271,11 @@ nav a:hover, nav a.active {
 }
 
 .logo-img {
-    height: 30px;
-    width: auto;
-    object-fit: contain;
+    width: 30px;  /* height와 동일한 크기 지정 */
+    height: 30px; /* 정사각형 비율 만들기 */
+    border-radius: 50%; /* 원 모양 만들기 */
+    object-fit: cover;  /* 찌그러짐 방지 */
 }
-
 /* --- About & Contact 커스텀 레이아웃 스타일 --- */
 
 .about-details {
