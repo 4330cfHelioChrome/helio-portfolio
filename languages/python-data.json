@@ -1,0 +1,26 @@
+{
+  "sections": [
+    {
+      "title": "Conditionals (조건문)",
+      "description": "Basic conditional statements used for flow control in Python scripts.",
+      "items": [
+        {
+          "title": "Simple If-Else Check",
+          "description": "A basic script checking user age eligibility.",
+          "code": "age = 18\nif age >= 18:\n    print(\"Access Granted\")\else:\n    print(\"Access Denied\")"
+        }
+      ]
+    },
+    {
+      "title": "Loops (반복문)",
+      "description": "For and while loops for iterative tasks and sequence traversal.",
+      "items": [
+        {
+          "title": "For Loop Iteration",
+          "description": "Iterating through a list of string elements.",
+          "code": "fruits = [\"apple\", \"banana\", \"cherry\"]\nfor fruit in fruits:\n    print(f\"I love eating {fruit}\")"
+        }
+      ]
+    }
+  ]
+}
