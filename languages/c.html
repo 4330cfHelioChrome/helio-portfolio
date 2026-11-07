@@ -27,64 +27,9 @@
             <h2>C Code Lab</h2>
             <p>Explore my C source codes and implementations organized by core concepts.</p>
             
-            <!-- 접었다 필 수 있는 섹션 영역 (아코디언 형태) -->
-            <div class="code-sections" style="display: flex; flex-direction: column; gap: 16px; margin-top: 24px;">
-                
-                <!-- 조건문 (Conditionals) 섹션 -->
-                <details class="project-card" style="padding: 20px; cursor: pointer;">
-                    <summary style="font-size: 1.2rem; font-weight: bold; color: #fff; outline: none;">Conditionals</summary>
-                    <div style="margin-top: 16px; border-top: 1px solid #333; padding-top: 16px; cursor: default;">
-                        <p style="color: #aaa; margin-bottom: 16px;">Basic conditional statements used for flow control in C scripts.</p>
-                        
-                        <!-- 소스코드 카드 1 -->
-                        <div style="background: #111; padding: 16px; border-radius: 8px; margin-bottom: 12px;">
-                            <h4 style="color: #38ef7d; margin-bottom: 6px; font-family: monospace;">Simple If-Else Check</h4>
-                            <p style="color: #ccc; font-size: 0.9rem; margin-bottom: 10px;">A basic script checking user age eligibility.</p>
-                            <pre style="background: #000; padding: 12px; border-radius: 6px; overflow-x: auto; color: #f8f8f2; font-family: monospace; font-size: 0.85rem; margin: 0;"><code>age = 18
-if age >= 18:
-    print("Access Granted")
-else:
-    print("Access Denied")</code></pre>
-                        </div>
-                    </div>
-                </details>
-
-                <!-- 반복문 (Loops) 섹션 -->
-                <details class="project-card" style="padding: 20px; cursor: pointer;">
-                    <summary style="font-size: 1.2rem; font-weight: bold; color: #fff; outline: none;">Loops</summary>
-                    <div style="margin-top: 16px; border-top: 1px solid #333; padding-top: 16px; cursor: default;">
-                        <p style="color: #aaa; margin-bottom: 16px;">For and while loops for iterative tasks and sequence traversal.</p>
-                        
-                        <!-- 소스코드 카드 1 -->
-                        <div style="background: #111; padding: 16px; border-radius: 8px; margin-bottom: 12px;">
-                            <h4 style="color: #38ef7d; margin-bottom: 6px; font-family: monospace;">For Loop Iteration</h4>
-                            <p style="color: #ccc; font-size: 0.9rem; margin-bottom: 10px;">Iterating through a list of string elements.</p>
-                            <pre style="background: #000; padding: 12px; border-radius: 6px; overflow-x: auto; color: #f8f8f2; font-family: monospace; font-size: 0.85rem; margin: 0;"><code>fruits = ["apple", "banana", "cherry"]
-for fruit in fruits:
-    print(f"I love eating {fruit}")</code></pre>
-                        </div>
-                    </div>
-                </details>
-
-                <!-- 함수 (Functions) 섹션 -->
-                <details class="project-card" style="padding: 20px; cursor: pointer;">
-                    <summary style="font-size: 1.2rem; font-weight: bold; color: #fff; outline: none;">Functions</summary>
-                    <div style="margin-top: 16px; border-top: 1px solid #333; padding-top: 16px; cursor: default;">
-                        <p style="color: #aaa; margin-bottom: 16px;">Reusable blocks of code using def and return statements.</p>
-                        
-                        <!-- 소스코드 카드 1 -->
-                        <div style="background: #111; padding: 16px; border-radius: 8px; margin-bottom: 12px;">
-                            <h4 style="color: #38ef7d; margin-bottom: 6px; font-family: monospace;">Basic Function with Return</h4>
-                            <p style="color: #ccc; font-size: 0.9rem; margin-bottom: 10px;">A simple calculator function for addition.</p>
-                            <pre style="background: #000; padding: 12px; border-radius: 6px; overflow-x: auto; color: #f8f8f2; font-family: monospace; font-size: 0.85rem; margin: 0;"><code>def add_numbers(a, b):
-    return a + b
-
-result = add_numbers(5, 3)
-print(result)  # Output: 8</code></pre>
-                        </div>
-                    </div>
-                </details>
-
+            <!-- data-json 속성으로 불러올 JSON 파일을 지정 -->
+            <div id="code-sections-container" class="code-sections" data-json="c-data.json" style="display: flex; flex-direction: column; gap: 16px; margin-top: 24px;">
+                <p style="color: #888;">Loading codes...</p>
             </div>
         </section>
     </main>
