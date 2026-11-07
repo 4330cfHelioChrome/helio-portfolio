@@ -116,7 +116,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     skillBoxes.forEach(box => {
         let startStr = box.getAttribute("data-start");
-        if (startStr === "2026-010") startStr = "2026-10";
+        if (startStr === "2026-011") startStr = "2026-11";
 
         if (startStr) {
             const [yearStr, monthStr] = startStr.split("-");
