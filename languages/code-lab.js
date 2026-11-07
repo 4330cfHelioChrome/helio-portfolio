@@ -20,8 +20,9 @@ document.addEventListener("DOMContentLoaded", () => {
             container.innerHTML = ''; // 로딩 문구 제거
 
             data.sections.forEach(section => {
+                // 수정 후 ('visible' 추가)
                 const details = document.createElement('details');
-                details.className = 'project-card';
+                details.className = 'project-card visible';
                 details.style.padding = '20px';
                 details.style.cursor = 'pointer';
 
