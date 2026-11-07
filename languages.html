@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HelioChrome | Languages</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- 1. 모듈 방식으로 Lenis를 불러와서 전역 객체에 등록 -->
+    <script type="module">
+        import Lenis from 'https://cdn.jsdelivr.net/npm/lenis@1/+esm';
+        window.Lenis = Lenis; // 전역으로 등록하여 script.js에서 쓸 수 있게 함
+    </script>    
+
+    <link rel="icon" type="image/png" href="images/logo.png">
+    <script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="index.html">
+                <img src="images/logo.png" alt="HelioChrome Logo" class="logo-img">
+            </a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="languages.html">Languages</a></li>
+                <li><a href="PME.html">PME</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="page-container">
+        <section class="fade-in contact-section">
+            <h2>Languages</h2>
+            <p class="contact-intro">This page gathers my codes in different programming languages.</p>
+            
+            <div class="contact-links-list">
+                <a href="./languages/python.html" class="contact-row">
+                    <span class="platform">Python</span>
+                    <span class="arrow">↗</span>
+                </a>
+                <a href="./languages/c.html" class="contact-row">
+                    <span class="platform">C</span>
+                    <span class="arrow">↗</span>
+                </a>
+                <a href="./languages/cpp.html" class="contact-row">
+                    <span class="platform">C++</span>
+                    <span class="arrow">↗</span>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- 하단 푸터 (라이선스 및 저작권) -->
+    <footer>
+        <p>&copy; 2026 HelioChrome. All rights reserved.</p>
+        <p class="footer-sub">Licensed under the MIT License.</p> 
+        <p class="footer-sub">Tech stack icons sourced from <a href="https://dashboardicons.com/" target="_blank">Dashboard Icons</a>.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
