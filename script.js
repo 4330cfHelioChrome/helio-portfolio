@@ -110,7 +110,7 @@ document.addEventListener("DOMContentLoaded", () => {
         boxesArray.forEach(box => skillContainer.appendChild(box));
     }
     
-    const currentDate = new Date(2026, 9); 
+    const currentDate = new Date(2026, 10); 
 
     let skillData = [];
 
