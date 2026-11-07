@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const container = document.getElementById('code-sections-container');
     if (!container) return;
 
-    // HTML 태그에 적힌 data-json 속성 값(예: python-data.json)을 가져옴
+    // HTML 태그에 적힌 data-json 속성 값 가져오기
     const jsonFile = container.getAttribute('data-json');
     if (!jsonFile) {
         console.error('No JSON file specified in data-json attribute.');
@@ -19,10 +19,11 @@ document.addEventListener("DOMContentLoaded", () => {
         .then(data => {
             container.innerHTML = ''; // 로딩 문구 제거
 
-            data.sections.forEach(section => {
-                // 수정 후 ('visible' 추가)
+            data.sections.forEach((section, index) => {
                 const details = document.createElement('details');
+                // 1. 애니메이션이 바로 나타나도록 'visible' 추가 및 순서(--i) 지정
                 details.className = 'project-card visible';
+                details.style.setProperty('--i', index);
                 details.style.padding = '20px';
                 details.style.cursor = 'pointer';
 
@@ -45,6 +46,9 @@ document.addEventListener("DOMContentLoaded", () => {
                     </div>
                 `;
 
+                // 2. 동적으로 생성된 카드에 3D 틸트 및 마우스 반사 효과 적용
+                setupCardTilt(details);
+
                 container.appendChild(details);
             });
         })
@@ -55,3 +59,34 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
 });
+
+// 3D 틸트 효과를 카드에 적용해 주는 함수 (script.js의 효과와 동일)
+function setupCardTilt(card) {
+    card.addEventListener("mousemove", (e) => {
+        card.style.transition = "none";
+        
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
+
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        
+        const rotateX = -((y - centerY) / centerY) * 12; 
+        const rotateY = ((x - centerX) / centerX) * 12;
+        
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-6px)`;
+    });
+
+    card.addEventListener("mouseleave", () => {
+        card.style.transition = "transform 0.5s ease, border-color 0.3s ease, box-shadow 0.3s ease";
+        card.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)";
+    });
+
+    card.addEventListener("mouseenter", () => {
+        card.style.transition = "none";
+    });
+}
