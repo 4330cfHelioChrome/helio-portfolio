@@ -10,7 +10,7 @@
         {
           "title": "Simple If-Else Check",
           "description": "A basic script checking user age eligibility.",
-          "code": "#include <stdio.h>\n\nint main(){\n  int age = 18;\n  if (age >= 18){\n    printf("Access Granted");\n  }else{\n    printf("Access Denied");\n  }\n\n  return 0;\n}"
+          "code": "#include <stdio.h>\n\n"
         }
       ]
     },
