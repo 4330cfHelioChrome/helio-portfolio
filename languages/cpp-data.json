@@ -1,1 +1,40 @@
 
+{
+  "pageTitle": "C Code Lab",
+  "pageDescription": "Explore my C source codes and implementations organized by core concepts.",
+  "sections": [
+    {
+      "title": "Conditionals",
+      "description": "Basic conditional statements used for flow control in C scripts.",
+      "items": [
+        {
+          "title": "Simple If-Else Check",
+          "description": "A basic script checking user age eligibility.",
+          "code": "#include <stdio.h>\n\n"
+        }
+      ]
+    },
+    {
+      "title": "Loops",
+      "description": "For and while loops for iterative tasks and sequence traversal.",
+      "items": [
+        {
+          "title": "For Loop Iteration",
+          "description": "Iterating through a list of string elements.",
+          "code": "fruits = [\"apple\", \"banana\", \"cherry\"]\nfor fruit in fruits:\n    print(f\"I love eating {fruit}\")"
+        }
+      ]
+    },
+    {
+      "title": "Functions",
+      "description": "Reusable blocks of code using def and return statements.",
+      "items": [
+        {
+          "title": "Basic Function with Return",
+          "description": "A simple calculator function for addition.",
+          "code": "def add_numbers(a, b):\n    return a + b\n\nresult = add_numbers(5, 3)\nprint(result)  # Output: 8"
+        }
+      ]
+    }
+  ]
+}
